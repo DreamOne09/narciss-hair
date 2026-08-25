@@ -18,12 +18,12 @@ export const SALON = {
 };
 
 export const AGENCY = {
-  name: "琬奧科技",
+  name: "琬奧",
   consultant: "Dream",
 };
 
 export const DEMO_DISCLAIMER =
-  "本站僅供 Demo，資料來自 Google Maps／粉專等公開來源，非店家委託";
+  "本站僅供 Demo、資料來自 Google Maps 等公開來源、非店家委託";
 
 export const GALLERY_IMAGES = [
   { src: "/gallery/work-1.webp", alt: "NARCISS HAIR 髮廊環境與造型作品" },

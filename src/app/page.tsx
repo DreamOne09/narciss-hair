@@ -1,4 +1,4 @@
-import { DemoOverlay } from "@/components/demo-overlay";
+import { DemoGate } from "@/components/demo-gate";
 import { Hero } from "@/components/hero";
 import { Gallery } from "@/components/gallery";
 import { Services } from "@/components/services";
@@ -10,8 +10,7 @@ import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <>
-      <DemoOverlay />
+    <DemoGate>
       <main>
         <Hero />
         <Gallery />
@@ -22,6 +21,6 @@ export default function Home() {
         <Location />
       </main>
       <Footer />
-    </>
+    </DemoGate>
   );
 }
