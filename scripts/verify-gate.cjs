@@ -12,16 +12,26 @@ async function run() {
   await page.goto(URL, { waitUntil: "networkidle" });
 
   await page.getByRole("button", { name: "看 Demo" }).waitFor({ state: "visible", timeout: 15000 });
-  const modal = page.locator('[role="dialog"][aria-modal="true"]');
+  const modal = page.locator("#entry-gate");
 
-  const overlayZ = await page.locator(".z-\\[10000\\]").evaluate((el) =>
+  const overlayZ = await page.locator("#entry-gate").evaluate((el) =>
     getComputedStyle(el).zIndex
   );
   const galleryZ = await page.locator("#works").evaluate((el) =>
     getComputedStyle(el).zIndex
   );
 
-  const bodyOverflow = await page.evaluate(() => document.body.style.overflow);
+  const htmlLocked = await page.evaluate(() =>
+    document.documentElement.classList.contains("entry-gate-locked")
+  );
+  const bodyLocked = await page.evaluate(() =>
+    document.body.classList.contains("entry-gate-locked")
+  );
+  const contentLocked = await page.evaluate(() =>
+    document.getElementById("entry-content")?.classList.contains("entry-gate-locked")
+  );
+
+  const bodyOverflow = await page.evaluate(() => getComputedStyle(document.body).overflow);
   const pointerBlocked = await page.evaluate(() => {
     const wrap = document.querySelector(".pointer-events-none");
     return wrap !== null;
@@ -79,7 +89,7 @@ async function run() {
   const scrollYAfterTouch = await page.evaluate(() => window.scrollY);
 
   await page.getByRole("button", { name: "看 Demo" }).click();
-  await page.locator('[role="dialog"][aria-modal="true"]').waitFor({ state: "detached", timeout: 5000 });
+  await page.locator("#entry-gate").waitFor({ state: "detached", timeout: 5000 });
 
   const aboveFold = {};
   for (const cta of ctas) {
@@ -99,6 +109,9 @@ async function run() {
       galleryZ,
       modalAboveGallery: Number(overlayZ) > Number(galleryZ || 0),
       bodyOverflow,
+      htmlLocked,
+      bodyLocked,
+      contentLocked,
       pointerBlocked,
       copy,
       hasButton,

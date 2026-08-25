@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { DEMO_DISCLAIMER } from "@/lib/site-data";
-import { lockPageScroll } from "@/lib/scroll-lock";
+import { lockEntryGate } from "@/lib/scroll-lock";
 
 const STORAGE_KEY = "narciss-hair-demo-dismissed";
 
@@ -21,7 +21,7 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
 
   useLayoutEffect(() => {
     if (!locked) return;
-    return lockPageScroll();
+    return lockEntryGate(contentRef.current);
   }, [locked]);
 
   useEffect(() => {
@@ -55,12 +55,9 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div
+        id="entry-content"
         ref={contentRef}
-        className={
-          locked
-            ? "pointer-events-none select-none overflow-hidden overscroll-none touch-none"
-            : undefined
-        }
+        className={locked ? "pointer-events-none select-none" : undefined}
         aria-hidden={locked ? true : undefined}
       >
         {children}
@@ -68,8 +65,8 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
 
       {locked && (
         <div
-          data-demo-gate-overlay
-          className="fixed inset-0 z-[10000] flex items-center justify-center bg-charcoal/88 px-5 backdrop-blur-sm pointer-events-auto touch-auto"
+          id="entry-gate"
+          className="fixed inset-0 z-[2147483647] flex items-center justify-center bg-charcoal/88 px-5 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-labelledby="demo-gate-title"
@@ -83,6 +80,7 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
             </p>
             <button
               type="button"
+              id="entry-gate-dismiss"
               onClick={dismiss}
               className="mt-4 w-full rounded-lg bg-gold py-2.5 text-sm font-medium text-charcoal transition-colors hover:bg-gold/90"
             >

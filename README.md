@@ -3,7 +3,7 @@
 高質感美髮沙龍 Demo 網站，展示 NARCISS HAIR（台北中山區）的品牌形象與預約導流能力。
 
 > **本站僅供 Demo**，資料來自 Google Maps／粉專等公開來源，**非店家委託**。
-> Demo 製作：琣奧 · 顧問 Dream
+> Demo 製作：琢奧 · 顧問 Dream
 
 ## 店家資訊
 
