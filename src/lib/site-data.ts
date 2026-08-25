@@ -18,7 +18,7 @@ export const SALON = {
 };
 
 export const AGENCY = {
-  name: "琬奧",
+  name: "琢奧科技",
   consultant: "Dream",
 };
 
