@@ -47,6 +47,37 @@ async function run() {
   await page.keyboard.press("Escape");
   const stillVisible = await modal.isVisible();
 
+  const scrollYStart = await page.evaluate(() => window.scrollY);
+
+  await page.mouse.wheel(0, 400);
+  await page.waitForTimeout(150);
+  const scrollYAfterWheel = await page.evaluate(() => window.scrollY);
+
+  await page.evaluate(() => window.scrollTo(0, 400));
+  await page.waitForTimeout(50);
+  const scrollYAfterForce = await page.evaluate(() => window.scrollY);
+
+  await page.evaluate(() => {
+    const body = document.body;
+    const touch = new Touch({
+      identifier: 1,
+      target: body,
+      clientX: 187,
+      clientY: 500,
+      pageX: 187,
+      pageY: 500,
+    });
+    body.dispatchEvent(
+      new TouchEvent("touchmove", {
+        bubbles: true,
+        cancelable: true,
+        touches: [touch],
+      })
+    );
+  });
+  await page.waitForTimeout(100);
+  const scrollYAfterTouch = await page.evaluate(() => window.scrollY);
+
   await page.getByRole("button", { name: "看 Demo" }).click();
   await page.locator('[role="dialog"][aria-modal="true"]').waitFor({ state: "detached", timeout: 5000 });
 
@@ -73,6 +104,15 @@ async function run() {
       hasButton,
       hasClose,
       escBlocked: stillVisible,
+      scrollYStart,
+      scrollYAfterWheel,
+      scrollYAfterForce,
+      scrollYAfterTouch,
+      scrollLocked:
+        scrollYStart === 0 &&
+        scrollYAfterWheel === 0 &&
+        scrollYAfterForce === 0 &&
+        scrollYAfterTouch === 0,
       blockedUntilClick: blocked,
       allBlocked: Object.values(blocked).every(Boolean),
       aboveFoldAfterDismiss: aboveFold,

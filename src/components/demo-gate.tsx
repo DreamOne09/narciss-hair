@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { DEMO_DISCLAIMER } from "@/lib/site-data";
+import { lockPageScroll } from "@/lib/scroll-lock";
 
 const STORAGE_KEY = "narciss-hair-demo-dismissed";
 
@@ -18,25 +19,9 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!locked) return;
-
-    const html = document.documentElement;
-    const body = document.body;
-    const prevHtmlOverflow = html.style.overflow;
-    const prevBodyOverflow = body.style.overflow;
-
-    html.style.overflow = "hidden";
-    body.style.overflow = "hidden";
-
-    const blockTouchMove = (e: TouchEvent) => e.preventDefault();
-    document.addEventListener("touchmove", blockTouchMove, { passive: false });
-
-    return () => {
-      html.style.overflow = prevHtmlOverflow;
-      body.style.overflow = prevBodyOverflow;
-      document.removeEventListener("touchmove", blockTouchMove);
-    };
+    return lockPageScroll();
   }, [locked]);
 
   useEffect(() => {
@@ -71,7 +56,11 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
     <>
       <div
         ref={contentRef}
-        className={locked ? "pointer-events-none select-none" : undefined}
+        className={
+          locked
+            ? "pointer-events-none select-none overflow-hidden overscroll-none touch-none"
+            : undefined
+        }
         aria-hidden={locked ? true : undefined}
       >
         {children}
@@ -79,14 +68,13 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
 
       {locked && (
         <div
-          className="fixed inset-0 z-[10000] flex items-center justify-center bg-charcoal/88 px-5 backdrop-blur-sm pointer-events-auto"
+          data-demo-gate-overlay
+          className="fixed inset-0 z-[10000] flex items-center justify-center bg-charcoal/88 px-5 backdrop-blur-sm pointer-events-auto touch-auto"
           role="dialog"
           aria-modal="true"
           aria-labelledby="demo-gate-title"
         >
-          <div
-            className="w-full max-w-sm rounded-2xl border border-cream/15 bg-charcoal px-6 py-5 shadow-2xl"
-          >
+          <div className="w-full max-w-sm rounded-2xl border border-cream/15 bg-charcoal px-6 py-5 shadow-2xl">
             <p
               id="demo-gate-title"
               className="text-sm leading-relaxed text-cream/90"
