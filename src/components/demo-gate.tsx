@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { DEMO_DISCLAIMER } from "@/lib/site-data";
 
 const STORAGE_KEY = "narciss-hair-demo-dismissed";
@@ -8,6 +8,7 @@ const STORAGE_KEY = "narciss-hair-demo-dismissed";
 export function DemoGate({ children }: { children: React.ReactNode }) {
   const [locked, setLocked] = useState(true);
   const [showBadge, setShowBadge] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const dismissed = localStorage.getItem(STORAGE_KEY);
@@ -19,10 +20,22 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!locked) return;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+
+    const html = document.documentElement;
+    const body = document.body;
+    const prevHtmlOverflow = html.style.overflow;
+    const prevBodyOverflow = body.style.overflow;
+
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+
+    const blockTouchMove = (e: TouchEvent) => e.preventDefault();
+    document.addEventListener("touchmove", blockTouchMove, { passive: false });
+
     return () => {
-      document.body.style.overflow = prevOverflow;
+      html.style.overflow = prevHtmlOverflow;
+      body.style.overflow = prevBodyOverflow;
+      document.removeEventListener("touchmove", blockTouchMove);
     };
   }, [locked]);
 
@@ -38,6 +51,16 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("keydown", blockEscape, true);
   }, [locked]);
 
+  useEffect(() => {
+    const node = contentRef.current;
+    if (!node) return;
+    if (locked) {
+      node.setAttribute("inert", "");
+    } else {
+      node.removeAttribute("inert");
+    }
+  }, [locked]);
+
   const dismiss = useCallback(() => {
     localStorage.setItem(STORAGE_KEY, "1");
     setLocked(false);
@@ -47,6 +70,7 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div
+        ref={contentRef}
         className={locked ? "pointer-events-none select-none" : undefined}
         aria-hidden={locked ? true : undefined}
       >
@@ -55,14 +79,13 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
 
       {locked && (
         <div
-          className="fixed inset-0 z-[10000] flex items-center justify-center bg-charcoal/88 px-5 backdrop-blur-sm"
+          className="fixed inset-0 z-[10000] flex items-center justify-center bg-charcoal/88 px-5 backdrop-blur-sm pointer-events-auto"
           role="dialog"
           aria-modal="true"
           aria-labelledby="demo-gate-title"
         >
           <div
             className="w-full max-w-sm rounded-2xl border border-cream/15 bg-charcoal px-6 py-5 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
           >
             <p
               id="demo-gate-title"
