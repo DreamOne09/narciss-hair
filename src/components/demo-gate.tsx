@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { DEMO_DISCLAIMER } from "@/lib/site-data";
 
 const STORAGE_KEY = "narciss-hair-demo-dismissed";
@@ -9,7 +8,6 @@ const STORAGE_KEY = "narciss-hair-demo-dismissed";
 export function DemoGate({ children }: { children: React.ReactNode }) {
   const [locked, setLocked] = useState(true);
   const [showBadge, setShowBadge] = useState(false);
-  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const dismissed = localStorage.getItem(STORAGE_KEY);
@@ -17,7 +15,6 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
       setLocked(false);
       setShowBadge(true);
     }
-    setReady(true);
   }, []);
 
   useEffect(() => {
@@ -47,12 +44,6 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
     setShowBadge(true);
   }, []);
 
-  if (!ready) {
-    return (
-      <div className="min-h-[100dvh] bg-charcoal" aria-hidden="true" />
-    );
-  }
-
   return (
     <>
       <div
@@ -79,13 +70,13 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
             >
               {DEMO_DISCLAIMER}
             </p>
-            <Button
+            <button
               type="button"
               onClick={dismiss}
-              className="mt-4 w-full bg-gold text-charcoal hover:bg-gold/90 font-medium"
+              className="mt-4 w-full rounded-lg bg-gold py-2.5 text-sm font-medium text-charcoal transition-colors hover:bg-gold/90"
             >
               看 Demo
-            </Button>
+            </button>
           </div>
         </div>
       )}
