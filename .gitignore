@@ -35,6 +35,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+.vercel-review/anonymous.json
+.vercel-review/*.bak
+.vercel-review/*.json
 
 # typescript
 *.tsbuildinfo
