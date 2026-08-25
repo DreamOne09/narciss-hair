@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { DEMO_DISCLAIMER } from "@/lib/site-data";
+import { DEMO_DISCLAIMER, DEMO_GATE_TITLE } from "@/lib/site-data";
 import { lockEntryGate } from "@/lib/scroll-lock";
 
 const STORAGE_KEY = "narciss-hair-demo-dismissed";
@@ -72,10 +72,13 @@ export function DemoGate({ children }: { children: React.ReactNode }) {
           aria-labelledby="demo-gate-title"
         >
           <div className="w-full max-w-sm rounded-2xl border border-cream/15 bg-charcoal px-6 py-5 shadow-2xl">
-            <p
+            <h2
               id="demo-gate-title"
-              className="text-sm leading-relaxed text-cream/90"
+              className="text-center text-lg font-semibold tracking-wide text-gold"
             >
+              {DEMO_GATE_TITLE}
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-cream/90">
               {DEMO_DISCLAIMER}
             </p>
             <button

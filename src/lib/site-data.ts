@@ -22,6 +22,8 @@ export const AGENCY = {
   consultant: "Dream",
 };
 
+export const DEMO_GATE_TITLE = "僅供 Demo 使用";
+
 export const DEMO_DISCLAIMER =
   "本站僅供 Demo、資料來自 Google Maps 等公開來源、非店家委託";
 

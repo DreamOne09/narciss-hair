@@ -15,6 +15,19 @@
 | Instagram | https://www.instagram.com/narciss.hair/ |
 | LINE | https://lin.ee/Bc0WDRi |
 
+## 部署（官方 Vercel alias）
+
+目標網址：`https://narciss-hair.vercel.app`
+
+需要具 deploy / alias 權限的 `VERCEL_TOKEN`（於 [Vercel Account Tokens](https://vercel.com/account/tokens) 建立）。
+
+```bash
+export VERCEL_TOKEN=your_token
+./scripts/deploy-official.sh
+```
+
+**禁止**使用 `vercel deploy --temporary` 或匿名 `temporary-*.vercel.app` 部署。
+
 ## 本地開發
 
 ```bash
@@ -40,8 +53,8 @@ npm start
 
 ## 功能亮點
 
-- 首訪 Demo 說明彈窗（不遮擋首屏 CTA）
-- 首屏三鍵聯絡：電話 / IG / LINE
+- 首訪全屏 Demo 彈窗（標示「僅供 Demo 使用」、三層捲動鎖定）
+- 首屏四鍵聯絡：電話 / FB / LINE / IG
 - 公開照片作品廊
 - 寵物友善空間說明
 - LINE 預約導流與 Google Maps 嵌入

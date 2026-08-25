@@ -50,7 +50,8 @@ async function run() {
     });
   }
 
-  const copy = await page.locator("#demo-gate-title").textContent();
+  const title = await page.locator("#demo-gate-title").textContent();
+  const hasDemoTitle = title?.includes("僅供 Demo 使用");
   const hasButton = await page.getByRole("button", { name: "看 Demo" }).isVisible();
   const hasClose = await page.locator('[aria-label="關閉"]').count();
 
@@ -113,7 +114,8 @@ async function run() {
       bodyLocked,
       contentLocked,
       pointerBlocked,
-      copy,
+      title,
+      hasDemoTitle,
       hasButton,
       hasClose,
       escBlocked: stillVisible,
