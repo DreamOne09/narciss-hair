@@ -1,4 +1,5 @@
+# 提案 Demo — 禁止搜尋引擎收錄（董事長硬條件）
+# GitHub Pages project site：同檔案位於 /narciss-hair/robots.txt；meta noindex 為主要防線
 User-agent: *
-Allow: /
-
-Sitemap: https://narciss-hair.vercel.app/sitemap-index.xml
+Disallow: /
+Disallow: /narciss-hair/

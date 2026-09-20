@@ -1,6 +1,6 @@
 const { chromium } = require("playwright");
 
-const URL = process.env.TEST_URL || "http://127.0.0.1:43123";
+const testUrl = process.env.TEST_URL || "http://127.0.0.1:43123";
 const STORAGE_KEY = "narciss-proposal-unlocked";
 
 async function run() {
@@ -10,7 +10,27 @@ async function run() {
     sessionStorage.removeItem(key);
   }, STORAGE_KEY);
   await page.setViewportSize({ width: 375, height: 667 });
-  await page.goto(URL, { waitUntil: "networkidle" });
+  await page.goto(testUrl, { waitUntil: "networkidle" });
+
+  const robotsMeta = await page.evaluate(() => {
+    const robots = document.querySelector('meta[name="robots"]')?.getAttribute("content") || "";
+    const googlebot =
+      document.querySelector('meta[name="googlebot"]')?.getAttribute("content") || "";
+    return { robots, googlebot };
+  });
+
+  const pageUrl = new URL(testUrl);
+  const robotsTxtUrl = new URL(
+    "robots.txt",
+    pageUrl.href.endsWith("/") ? pageUrl.href : `${pageUrl.href}/`
+  ).href;
+  let robotsTxt = "";
+  try {
+    const res = await page.request.get(robotsTxtUrl);
+    robotsTxt = res.ok() ? await res.text() : "";
+  } catch {
+    robotsTxt = "";
+  }
 
   await page.getByRole("heading", { name: "提案預覽須知" }).waitFor({ state: "visible", timeout: 15000 });
 
@@ -50,9 +70,18 @@ async function run() {
     });
   }
 
+  const noindexOk =
+    robotsMeta.robots.includes("noindex") &&
+    robotsMeta.googlebot.includes("noindex") &&
+    robotsTxt.includes("Disallow: /");
+
   console.log(
     JSON.stringify({
-      url: URL,
+      url: testUrl,
+      robotsMeta,
+      robotsTxtUrl,
+      robotsDisallowAll: robotsTxt.includes("Disallow: /"),
+      noindexPresent: noindexOk,
       htmlLocked,
       blockedUntilUnlock: blocked,
       wrongPasswordShowsError: errorVisible,
@@ -60,6 +89,10 @@ async function run() {
       dualCtaAboveFold: aboveFold.tel && aboveFold.line,
     })
   );
+
+  if (!noindexOk) {
+    throw new Error("noindex / robots.txt acceptance failed");
+  }
 
   await browser.close();
 }

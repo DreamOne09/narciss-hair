@@ -12,11 +12,10 @@ import Footer from "../components/Footer.astro";
 interface Props {
   title: string;
   description: string;
-  noindex?: boolean;
   withJsonLd?: boolean;
 }
 
-const { title, description, noindex = false, withJsonLd = false } = Astro.props;
+const { title, description, withJsonLd = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -25,14 +24,13 @@ const { title, description, noindex = false, withJsonLd = false } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href={asset("favicon.svg")} />
-    <link rel="sitemap" href={asset("sitemap-index.xml")} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600&display=swap"
       rel="stylesheet"
     />
-    <Seo title={title} description={description} noindex={noindex} />
+    <Seo title={title} description={description} />
     {withJsonLd && <JsonLdLocalBusiness />}
   </head>
   <body>

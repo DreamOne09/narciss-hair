@@ -15,6 +15,7 @@
 | 底色 | `--color-wood` 暖木灰 |
 | CTA | `--color-copper` / `--gradient-accent` **僅按鈕** |
 | 浮水印 | `僅供 Demo｜琢奧`（提案用途） |
+| 收錄 | `noindex,nofollow,noarchive` + `robots.txt` Disallow（提案硬條件） |
 
 ## 刻意近似（非官方 CIS 手冊）
 

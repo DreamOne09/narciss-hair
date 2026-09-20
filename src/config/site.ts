@@ -15,6 +15,11 @@ export const SITE = {
     imageWatermark: "僅供 Demo｜琢奧",
   },
 
+  /** 提案 Demo：禁止搜尋引擎收錄（董事長硬條件） */
+  crawl: {
+    robotsMeta: "noindex, nofollow, noarchive",
+  },
+
   proposal: {
     storageKey: "narciss-proposal-unlocked",
     gateTitle: "提案預覽須知",
