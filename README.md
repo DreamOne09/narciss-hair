@@ -1,60 +1,47 @@
-# NARCISS HAIR — Demo 網站
+# NARCISS HAIR — 靜態行銷 Demo（Astro-Chalet 家）
 
-高質感美髮沙龍 Demo 網站，展示 NARCISS HAIR（台北中山區）的品牌形象與預約導流能力。
+台北中山區 **NARCISS HAIR** 的美業行銷站 Demo。**純靜態** `astro build`，無資料庫、無 CMS。
 
-> **本站僅供 Demo**，資料來自 Google Maps／粉專等公開來源，**非店家委託**。
-> Demo 製作：琢奧 · 顧問 Dream
+> **僅供 Demo 使用** · 公開來源整理 · **非店家委託** · **由琢奧科技製作**
 
-## 店家資訊
+## 官方 alias（G5 交付）
 
-| 項目 | 內容 |
-|------|------|
-| 名稱 | NARCISS HAIR |
-| 地址 | 台北市中山區中山北路二段16巷16號 |
-| 電話 | 02-2563-6233 |
-| Instagram | https://www.instagram.com/narciss.hair/ |
-| LINE | https://lin.ee/Bc0WDRi |
-
-## 部署（官方 Vercel alias）
-
-目標網址：`https://narciss-hair.vercel.app`
-
-需要具 deploy / alias 權限的 `VERCEL_TOKEN`（於 [Vercel Account Tokens](https://vercel.com/account/tokens) 建立）。
+`https://narciss-hair.vercel.app`
 
 ```bash
 export VERCEL_TOKEN=your_token
 ./scripts/deploy-official.sh
 ```
 
-**禁止**使用 `vercel deploy --temporary` 或匿名 `temporary-*.vercel.app` 部署。
+禁止以 anonymous `temporary-*.vercel.app` 當正式交付。
 
-## 本地開發
+## 改文案：只改一個檔
+
+```text
+src/config/site.ts
+```
+
+（Astro-Chalet 哲學：元件不寫死文案，全部讀 `SITE`。）
+
+## 本地
 
 ```bash
 npm install
-npm run dev
+npm run dev      # http://localhost:43123
+npm run build    # → dist/
+npm run verify:g5
 ```
 
-開啟 http://localhost:43123
+## 區塊
 
-## 建置
+Hero（editorial 雙 CTA）· 服務（圖文交替，非四欄卡）· 關於 · Gallery · 信任（不造假評價）· CTA · FAQ · 時段地址 · 聯絡
 
-```bash
-npm run build
-npm start
-```
+## Demo 進站窗
 
-## 技術棧
+置中 overlay；未按「看 Demo」鎖 `html` / `body` / `#site-shell` 捲動，背後 CTA 不可點。
 
-- Next.js 16 (App Router)
-- TypeScript
-- Tailwind CSS v4
-- shadcn/ui
+## 技術
 
-## 功能亮點
-
-- 首訪全屏 Demo 彈窗（標示「僅供 Demo 使用」、三層捲動鎖定）
-- 首屏四鍵聯絡：電話 / FB / LINE / IG
-- 公開照片作品廊
-- 寵物友善空間說明
-- LINE 預約導流與 Google Maps 嵌入
+- Astro 6 + `@astrojs/sitemap`
+- HairSalon JSON-LD + FAQ JSON-LD
+- CSS scroll reveal（無 GSAP／無 WebGL）

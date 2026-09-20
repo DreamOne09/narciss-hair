@@ -1,0 +1,70 @@
+---
+import { SITE } from "../../config/site";
+
+const { ctaBanner } = SITE;
+---
+
+<section class="banner">
+  <div class="container banner-inner">
+    <div>
+      <h2 class="banner-title">{ctaBanner.title}</h2>
+      <p class="banner-text">{ctaBanner.text}</p>
+    </div>
+    <div class="banner-actions">
+      <a class="button" href={ctaBanner.button.href}>{ctaBanner.button.label}</a>
+      {
+        "buttonSecondary" in ctaBanner && ctaBanner.buttonSecondary && (
+          <a class="button button-secondary" href={ctaBanner.buttonSecondary.href}>
+            {ctaBanner.buttonSecondary.label}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .banner {
+    position: relative;
+    background: var(--color-dark-bg);
+    color: var(--color-dark-text);
+    padding-block: calc(var(--space-4) * 1.1);
+  }
+
+  .banner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .banner-title {
+    color: var(--color-dark-text);
+    margin-bottom: var(--space-1);
+  }
+
+  .banner-text {
+    margin: 0;
+    color: var(--color-dark-text-muted);
+  }
+
+  .banner-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    width: 100%;
+  }
+
+  @media (min-width: 480px) {
+    .banner-actions {
+      flex-direction: row;
+      width: auto;
+    }
+  }
+
+  .banner .button-secondary {
+    color: var(--color-dark-text);
+    border-color: rgba(247, 240, 228, 0.35);
+  }
+</style>

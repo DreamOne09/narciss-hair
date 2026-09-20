@@ -1,0 +1,258 @@
+---
+import { SITE } from "../../config/site";
+
+const { hero, demo, ui, vi } = SITE;
+---
+
+<section class="hero-immersive" aria-labelledby="hero-title">
+  <img
+    src={hero.image}
+    alt={hero.imageAlt}
+    class="hero-backdrop"
+    width="1920"
+    height="1280"
+    fetchpriority="high"
+    decoding="async"
+  />
+  <span class="hero-watermark" aria-hidden="true">{vi.imageWatermark}</span>
+
+  <div class="container hero-stage">
+    <div class="hero-text">
+      <div class="hero-topline">
+        <p class="hero-eyebrow">{hero.eyebrow}</p>
+        <span class="demo-badge">{demo.ribbon}</span>
+      </div>
+      <h1 id="hero-title">{hero.title}</h1>
+      <p class="hero-subtitle">{hero.subtitle}</p>
+
+      <div class="hero-actions">
+        <a class="button hero-btn-tel" href={hero.primaryCta.href} data-cta="tel">
+          {hero.primaryCta.label}
+        </a>
+        <a
+          class="button hero-btn-line"
+          href={hero.secondaryCta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta="line"
+        >
+          {hero.secondaryCta.label}
+        </a>
+        <a
+          class="hero-btn-ig"
+          href={hero.tertiaryCta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta="ig"
+        >
+          {hero.tertiaryCta.label} →
+        </a>
+      </div>
+
+      {
+        hero.highlights.length > 0 && (
+          <ul class="hero-highlights">
+            {hero.highlights.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </div>
+
+  <svg class="hero-ridge" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 70V38L180 12l150 22 190-30 170 26 160-14 210 22 180-28 200 24V70z" />
+  </svg>
+</section>
+
+<style>
+  .hero-immersive {
+    position: relative;
+    min-height: min(92vh, 900px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: var(--color-dark-text);
+    overflow: hidden;
+    isolation: isolate;
+    padding-block: calc(var(--space-section) * 0.55) 0;
+  }
+
+  .hero-backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -3;
+  }
+
+  .hero-immersive::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      linear-gradient(180deg, var(--color-hero-veil) 0%, rgba(28, 27, 26, 0.45) 42%, rgba(28, 27, 26, 0.62) 100%),
+      linear-gradient(100deg, rgba(28, 27, 26, 0.82) 0%, rgba(28, 27, 26, 0.35) 55%, transparent 100%);
+  }
+
+  .hero-watermark {
+    position: absolute;
+    right: var(--space-2);
+    bottom: 5.5rem;
+    z-index: 2;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: rgba(245, 241, 234, 0.55);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  .hero-stage {
+    padding-bottom: var(--space-section);
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-text {
+    max-width: 36rem;
+  }
+
+  .hero-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-2);
+  }
+
+  .hero-eyebrow {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    color: var(--color-mist-rose);
+  }
+
+  .demo-badge {
+    font-size: 0.68rem;
+    border: 1px solid rgba(245, 241, 234, 0.25);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-pill);
+    color: var(--color-dark-text-muted);
+  }
+
+  .hero-immersive h1 {
+    color: var(--color-dark-text);
+    margin-bottom: var(--space-1);
+    font-size: clamp(1.75rem, 7vw, 3.2rem);
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-sm);
+    color: var(--color-dark-text-muted);
+    max-width: 26rem;
+    margin-bottom: var(--space-2);
+  }
+
+  @media (min-width: 768px) {
+    .hero-subtitle {
+      font-size: var(--text-lg);
+    }
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: var(--space-2);
+  }
+
+  @media (min-width: 480px) {
+    .hero-actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+  }
+
+  .hero-btn-tel,
+  .hero-btn-line {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 9.5rem;
+  }
+
+  .hero-btn-line {
+    background: var(--color-line-brand);
+    color: #fff;
+    border: none;
+  }
+
+  .hero-btn-line:hover {
+    color: #fff;
+    filter: brightness(0.96);
+  }
+
+  .hero-btn-ig {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-dark-text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--color-mist-rose);
+  }
+
+  .hero-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: var(--space-2) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .hero-highlights li {
+    font-size: var(--text-sm);
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(196, 168, 160, 0.35);
+    color: var(--color-dark-text-muted);
+    background: rgba(28, 27, 26, 0.35);
+  }
+
+  .hero-ridge {
+    display: block;
+    width: 100%;
+    height: 70px;
+    margin-top: -1px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-ridge path {
+    fill: var(--color-bg);
+  }
+
+  @media (min-width: 1440px) {
+    .hero-immersive {
+      min-height: min(88vh, 960px);
+    }
+
+    .hero-stage {
+      padding-bottom: calc(var(--space-section) * 1.1);
+    }
+
+    .hero-text {
+      max-width: 42rem;
+    }
+  }
+</style>
