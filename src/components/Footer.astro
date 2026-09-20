@@ -1,0 +1,107 @@
+---
+import { SITE } from "../config/site";
+
+const year = new Date().getFullYear();
+
+function socialLabel(url: string): string {
+  if (url.includes("instagram")) return "Instagram";
+  if (url.includes("lin.ee") || url.includes("line.me")) return "LINE";
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <p class="footer-brand">{SITE.name}</p>
+      <p class="footer-text">
+        {SITE.business.address.city}{SITE.business.address.street}<br />
+        {SITE.business.accessNote}
+      </p>
+      <p class="footer-text">
+        <a href={`tel:${SITE.business.phone}`}>{SITE.business.phoneDisplay}</a>
+      </p>
+      <p class="footer-demo">{SITE.demo.disclaimer}</p>
+      <p class="footer-demo">{SITE.agency.credit}</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer links">
+      <a href="/legal-notice/">{SITE.ui.legalNoticeLabel}</a>
+      <a href="/privacy-policy/">{SITE.ui.privacyPolicyLabel}</a>
+      {
+        SITE.business.socialProfiles.map((url) => (
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            {socialLabel(url)}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+
+  <div class="container">
+    <p class="footer-copyright">
+      &copy; {year} {SITE.name} — {SITE.ui.allRightsReserved} · {SITE.url.replace("https://", "")}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-dark-bg);
+    color: var(--color-dark-text);
+    padding-block: var(--space-4) var(--space-3);
+    border-top: 1px solid rgba(247, 240, 228, 0.1);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+
+  .footer-brand {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    margin-bottom: var(--space-1);
+  }
+
+  .footer-text,
+  .footer-text a,
+  .footer-demo {
+    color: var(--color-dark-text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .footer-demo {
+    margin-top: var(--space-2);
+    max-width: 36rem;
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .footer-nav a {
+    color: var(--color-dark-text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .footer-nav a:hover,
+  .footer-text a:hover {
+    color: var(--color-accent-bright);
+  }
+
+  .footer-copyright {
+    font-size: var(--text-sm);
+    opacity: 0.55;
+    margin: 0;
+  }
+</style>

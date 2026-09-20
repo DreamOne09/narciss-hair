@@ -1,0 +1,71 @@
+---
+import { SITE } from "../../config/site";
+
+const { trust, business } = SITE;
+---
+
+<section id="trust" class="section section-alt">
+  <div class="container">
+    {trust.eyebrow && <p class="section-eyebrow">{trust.eyebrow}</p>}
+    <h2>{trust.title}</h2>
+    <p class="intro">{trust.intro}</p>
+
+    <ul class="trust-list">
+      {
+        trust.items.map((item) => (
+          <li class="trust-item reveal">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="trust-link">
+      <a href={business.googleBusinessUrl} target="_blank" rel="noopener noreferrer">
+        {trust.linkLabel}
+      </a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .intro {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .trust-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .trust-list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+  }
+
+  .trust-item {
+    border-top: 2px solid var(--color-border);
+    padding-top: var(--space-2);
+  }
+
+  .trust-item h3 {
+    font-size: var(--text-h3);
+  }
+
+  .trust-item p {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .trust-link {
+    margin-top: var(--space-3);
+  }
+</style>

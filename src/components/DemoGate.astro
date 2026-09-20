@@ -1,38 +1,107 @@
 ---
-import { site } from "../config/site";
+import { SITE } from "../config/site";
+
+const { demo, agency } = SITE;
 ---
 
 <div
   id="demo-gate"
-  class="fixed inset-0 z-[100] flex items-center justify-center bg-ink/55 px-5 backdrop-blur-[2px]"
+  class="demo-gate"
   role="dialog"
   aria-modal="true"
   aria-labelledby="demo-gate-title"
   aria-describedby="demo-gate-desc"
 >
-  <div
-    class="w-full max-w-md rounded-sm border border-paper/15 bg-paper px-6 py-8 text-ink shadow-2xl"
-  >
-    <p
-      id="demo-gate-title"
-      class="font-display text-2xl font-semibold tracking-tight"
-    >
-      {site.demo.gateTitle}
-    </p>
-    <p id="demo-gate-desc" class="mt-4 text-sm leading-relaxed text-ink-muted">
-      {site.demo.gateBody}
-    </p>
-    <p class="mt-3 text-xs text-ink-muted/80">{site.agency.credit}</p>
-    <button
-      type="button"
-      id="demo-gate-enter"
-      class="mt-8 min-h-11 w-full rounded-sm bg-ink px-4 py-3 text-sm font-medium tracking-wide text-paper transition-colors hover:bg-ink/90"
-    >
-      {site.demo.gateButton}
+  <div class="demo-gate-panel">
+    <h2 id="demo-gate-title">{demo.gateTitle}</h2>
+    <p id="demo-gate-desc">{demo.gateBody}</p>
+    <p class="demo-gate-credit">{agency.credit}</p>
+    <button type="button" id="demo-gate-enter" class="button button-dark">
+      {demo.gateButton}
     </button>
   </div>
 </div>
 
 <script>
-  import "../scripts/demo-gate.ts";
+  const STORAGE_KEY = "narciss-hair-demo-dismissed";
+
+  function lockScroll() {
+    document.documentElement.classList.add("demo-gate-locked");
+    document.body.classList.add("demo-gate-locked");
+    document.getElementById("site-shell")?.classList.add("demo-gate-locked");
+  }
+
+  function unlockScroll() {
+    document.documentElement.classList.remove("demo-gate-locked");
+    document.body.classList.remove("demo-gate-locked");
+    document.getElementById("site-shell")?.classList.remove("demo-gate-locked");
+  }
+
+  function preventScroll(e: Event) {
+    e.preventDefault();
+  }
+
+  const gate = document.getElementById("demo-gate");
+  const enter = document.getElementById("demo-gate-enter");
+
+  if (gate && enter) {
+    if (sessionStorage.getItem(STORAGE_KEY) === "1") {
+      gate.remove();
+    } else {
+      lockScroll();
+      window.addEventListener("wheel", preventScroll, { passive: false });
+      window.addEventListener("touchmove", preventScroll, { passive: false });
+
+      enter.addEventListener("click", () => {
+        sessionStorage.setItem(STORAGE_KEY, "1");
+        window.removeEventListener("wheel", preventScroll);
+        window.removeEventListener("touchmove", preventScroll);
+        unlockScroll();
+        gate.remove();
+      });
+    }
+  }
 </script>
+
+<style>
+  .demo-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: grid;
+    place-items: center;
+    padding: var(--space-3);
+    background: color-mix(in srgb, var(--color-text) 45%, transparent);
+    backdrop-filter: blur(3px);
+  }
+
+  .demo-gate-panel {
+    width: min(100%, 26rem);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .demo-gate-panel h2 {
+    margin-bottom: var(--space-2);
+    font-size: 1.6rem;
+  }
+
+  .demo-gate-panel p {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .demo-gate-credit {
+    font-size: 0.75rem;
+    opacity: 0.85;
+  }
+
+  .demo-gate-panel .button {
+    width: 100%;
+    margin-top: var(--space-3);
+    min-height: 44px;
+  }
+</style>

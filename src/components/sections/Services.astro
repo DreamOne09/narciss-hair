@@ -1,0 +1,97 @@
+---
+import { SITE } from "../../config/site";
+
+const { services } = SITE;
+---
+
+<section id="services" class="section">
+  <div class="container">
+    {services.eyebrow && <p class="section-eyebrow">{services.eyebrow}</p>}
+    <h2>{services.title}</h2>
+    <p class="intro">{services.intro}</p>
+
+    <div class="service-stack">
+      {
+        services.items.map((item, index) => (
+          <article class:list={["service-row reveal", { reverse: index % 2 === 1 }]}>
+            <figure class="service-media">
+              <img src={item.image} alt={item.imageAlt} width="800" height="600" loading="lazy" />
+            </figure>
+            <div class="service-body">
+              <p class="service-num" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro {
+    color: var(--color-text-muted);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-4);
+  }
+
+  .service-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-section);
+  }
+
+  .service-row {
+    display: grid;
+    gap: var(--space-3);
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .service-row {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+
+    .service-row.reverse .service-media {
+      order: 2;
+    }
+
+    .service-row.reverse .service-body {
+      order: 1;
+    }
+  }
+
+  .service-media {
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-alt);
+  }
+
+  .service-media img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .service-num {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+    margin: 0 0 var(--space-1);
+  }
+
+  .service-body h3 {
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+  }
+
+  .service-body p {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+</style>

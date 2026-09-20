@@ -1,0 +1,245 @@
+---
+import { SITE } from "../../config/site";
+
+const { hero, business, demo, ui } = SITE;
+---
+
+<section class="hero-editorial" aria-labelledby="hero-title">
+  <div class="container hero-wrap">
+    <div class="hero-copy">
+      <div class="hero-meta">
+        <p class="hero-eyebrow">{hero.eyebrow}</p>
+        <span class="demo-badge">{demo.ribbon}</span>
+      </div>
+      <span class="hero-signature-rule" aria-hidden="true"></span>
+      <h1 id="hero-title">{hero.title}</h1>
+      <p class="hero-tagline">{SITE.tagline}</p>
+      <p class="hero-sub">{hero.subtitle}</p>
+      <p class="hero-address">
+        {business.address.city}{business.address.street} · {business.accessNote}
+      </p>
+      {
+        business.petFriendly && (
+          <p class="pet-chip">{ui.petFriendlyLabel}</p>
+        )
+      }
+
+      <div class="hero-cta-row">
+        <a class="button button-dark" href={hero.primaryCta.href} data-cta="tel">
+          {hero.primaryCta.label}
+        </a>
+        <a
+          class="button button-line"
+          href={hero.secondaryCta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta="line"
+        >
+          {hero.secondaryCta.label}
+        </a>
+      </div>
+      <a
+        class="hero-ig"
+        href={hero.tertiaryCta.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cta="ig"
+      >
+        {hero.tertiaryCta.label} →
+      </a>
+    </div>
+
+    <figure class="hero-visual">
+      <img
+        src={hero.image}
+        alt={hero.imageAlt}
+        width="1200"
+        height="1500"
+        fetchpriority="high"
+        decoding="async"
+        class="hero-photo"
+      />
+      <figcaption>{ui.demoImageCredit} · {demo.ribbon}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero-editorial {
+    background: var(--color-bg);
+    color: var(--color-text);
+    padding-block: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero-wrap {
+    display: grid;
+    gap: var(--space-3);
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .hero-wrap {
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: var(--space-4);
+      align-items: center;
+    }
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .hero-eyebrow {
+    margin: 0;
+    font-size: 0.72rem;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  .demo-badge {
+    font-size: 0.68rem;
+    border: 1px solid var(--color-border);
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-pill);
+    color: var(--color-text-muted);
+  }
+
+  .hero-signature-rule {
+    display: block;
+    width: 3.5rem;
+    height: 2px;
+    background: var(--color-accent);
+    margin: var(--space-2) 0;
+    transform-origin: left;
+    animation: hero-rule-grow 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  }
+
+  @keyframes hero-rule-grow {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-signature-rule {
+      animation: none;
+    }
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2rem, 7.5vw, 3.4rem);
+    margin-bottom: var(--space-1);
+  }
+
+  .hero-tagline {
+    font-size: var(--text-lg);
+    max-width: 28rem;
+    margin-bottom: var(--space-1);
+  }
+
+  .hero-sub {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    max-width: 32rem;
+  }
+
+  .hero-address {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    margin-top: var(--space-1);
+  }
+
+  .pet-chip {
+    display: inline-block;
+    margin-top: var(--space-1);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .hero-cta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-top: var(--space-3);
+  }
+
+  @media (min-width: 480px) {
+    .hero-cta-row {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  .button-dark {
+    background: var(--color-text);
+    color: var(--color-bg);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button-line {
+    background: #06c755;
+    color: #fff;
+    border: none;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button-line:hover {
+    filter: brightness(0.95);
+    color: #fff;
+  }
+
+  .hero-ig {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 0.35rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+  }
+
+  .hero-visual {
+    margin: 0;
+    position: relative;
+  }
+
+  .hero-photo {
+    width: 100%;
+    max-height: min(34vh, 320px);
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+  }
+
+  @media (min-width: 768px) {
+    .hero-photo {
+      max-height: none;
+      min-height: 420px;
+    }
+  }
+
+  .hero-visual figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+  }
+</style>
