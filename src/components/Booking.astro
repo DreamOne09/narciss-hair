@@ -1,0 +1,46 @@
+---
+import { site } from "../config/site";
+const { booking, business } = site;
+---
+
+<section id="booking" class="bg-paper py-16 md:py-24" aria-labelledby="booking-title">
+  <div class="mx-auto max-w-6xl px-4 md:px-8">
+    <header class="reveal max-w-xl">
+      <p class="text-[11px] tracking-[0.24em] text-accent uppercase">Visit</p>
+      <h2 id="booking-title" class="font-display mt-3 text-3xl font-semibold md:text-4xl">
+        {booking.title}
+      </h2>
+    </header>
+
+    <ol class="mt-12 border-l border-ink/15 pl-6 md:pl-8">
+      {
+        booking.steps.map((step) => (
+          <li class="reveal relative pb-12 last:pb-0">
+            <span class="absolute -left-[1.95rem] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-ink text-xs font-medium text-paper md:-left-[2.35rem]">
+              {step.num}
+            </span>
+            <h3 class="font-display text-xl font-semibold">{step.title}</h3>
+            <p class="mt-2 max-w-lg text-sm leading-relaxed text-ink-muted">{step.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="reveal mt-12 flex flex-col gap-3 sm:flex-row">
+      <a
+        href={business.phoneTel}
+        class="inline-flex min-h-11 items-center justify-center rounded-sm bg-ink px-6 py-3 text-sm font-medium text-paper"
+      >
+        {business.phoneLabel}
+      </a>
+      <a
+        href={business.line}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex min-h-11 items-center justify-center rounded-sm bg-line-brand px-6 py-3 text-sm font-medium text-white"
+      >
+        {business.lineLabel}
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,18 @@
+---
+import { site } from "../config/site";
+---
+
+<footer class="border-t border-ink/10 bg-paper py-10">
+  <div class="mx-auto max-w-6xl px-4 md:px-8">
+    <p class="text-sm font-medium text-ink">{site.business.name}</p>
+    <p class="mt-2 max-w-2xl text-xs leading-relaxed text-ink-muted">
+      {site.demo.disclaimer}
+    </p>
+    <p class="mt-2 text-xs text-ink-muted">{site.agency.credit}</p>
+    <p class="mt-1 text-[11px] text-ink-muted/70">{site.priceContext}</p>
+    <p class="mt-6 text-[11px] text-ink-muted/60">
+      目標網址：
+      <a href={site.url} class="underline underline-offset-2">{site.url.replace("https://", "")}</a>
+    </p>
+  </div>
+</footer>

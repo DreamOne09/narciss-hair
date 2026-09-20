@@ -1,32 +1,25 @@
-# NARCISS HAIR — Demo 網站
+# NARCISS HAIR — 靜態行銷 Demo（Astro）
 
-高質感美髮沙龍 Demo 網站，展示 NARCISS HAIR（台北中山區）的品牌形象與預約導流能力。
+台北中山區 **NARCISS HAIR** 的美業行銷站 Demo：大圖 editorial 版型、Local SEO、雙 CTA 轉換動線。**純靜態** `astro build`，無資料庫、無 CMS 後台。
 
-> **本站僅供 Demo**，資料來自 Google Maps／粉專等公開來源，**非店家委託**。
-> Demo 製作：琢奧 · 顧問 Dream
+> **僅供 Demo 使用** · 內容整理自 Google Maps、Instagram 等公開來源 · **非店家委託**  
+> **由琢奧科技製作**
 
-## 店家資訊
+## 官方網址（目標 alias）
 
-| 項目 | 內容 |
-|------|------|
-| 名稱 | NARCISS HAIR |
-| 地址 | 台北市中山區中山北路二段16巷16號 |
-| 電話 | 02-2563-6233 |
-| Instagram | https://www.instagram.com/narciss.hair/ |
-| LINE | https://lin.ee/Bc0WDRi |
+`https://narciss-hair.vercel.app`
 
-## 部署（官方 Vercel alias）
+（臨時 `*.vercel.app` 部署不算驗收交付；請用下方官方腳本綁定 alias。）
 
-目標網址：`https://narciss-hair.vercel.app`
+## 改文案：只改一個檔
 
-需要具 deploy / alias 權限的 `VERCEL_TOKEN`（於 [Vercel Account Tokens](https://vercel.com/account/tokens) 建立）。
+所有店名、聯絡、時段、服務、FAQ、SEO、圖片路徑都在：
 
-```bash
-export VERCEL_TOKEN=your_token
-./scripts/deploy-official.sh
+```text
+src/config/site.ts
 ```
 
-**禁止**使用 `vercel deploy --temporary` 或匿名 `temporary-*.vercel.app` 部署。
+改完存檔 → `npm run dev` 預覽 → `npm run build` 建置。
 
 ## 本地開發
 
@@ -35,26 +28,47 @@ npm install
 npm run dev
 ```
 
-開啟 http://localhost:43123
+瀏覽器開啟 http://localhost:43123
 
 ## 建置
 
 ```bash
 npm run build
-npm start
+npm run preview
 ```
+
+輸出目錄：`dist/`
+
+## G5 自動檢查（Demo 進站窗 + 375 首屏 CTA）
+
+```bash
+npm run preview &
+TEST_URL=http://127.0.0.1:43123 node scripts/verify-gate.cjs
+```
+
+## 部署（官方 Vercel alias）
+
+需要具 deploy / alias 權限的 `VERCEL_TOKEN`：
+
+```bash
+export VERCEL_TOKEN=your_token
+./scripts/deploy-official.sh
+```
+
+**禁止**使用匿名 temporary 部署當正式交付。
 
 ## 技術棧
 
-- Next.js 16 (App Router)
-- TypeScript
+- [Astro](https://astro.build/) 5（static output）
 - Tailwind CSS v4
-- shadcn/ui
+- `@astrojs/sitemap`（sitemap）
+- LocalBusiness + FAQ JSON-LD
+- 進站 Demo 置中 overlay（未點「看 Demo」前鎖捲動、CTA 不可點）
 
-## 功能亮點
+## 區塊結構
 
-- 首訪全屏 Demo 彈窗（標示「僅供 Demo 使用」、三層捲動鎖定）
-- 首屏四鍵聯絡：電話 / FB / LINE / IG
-- 公開照片作品廊
-- 寵物友善空間說明
-- LINE 預約導流與 Google Maps 嵌入
+Hero · 服務（editorial 圖文）· 關於 · Gallery · 信任說明（不捏造評價）· 預約步驟 · 時段／地址／地圖 · FAQ · CTA Banner
+
+## Demo 免責
+
+本 repo 為 **NT$36,000 等級行銷站展示標的** 之 Demo 實作；正式客製、素材改稿、預約／會員系統另議。

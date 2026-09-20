@@ -1,0 +1,92 @@
+---
+import { site } from "../config/site";
+const { business, hero } = site;
+---
+
+<section
+  id="top"
+  class="relative border-b border-ink/10 bg-paper max-[480px]:min-h-0"
+  aria-labelledby="hero-title"
+>
+  <div class="mx-auto grid max-w-6xl gap-5 px-4 pb-8 pt-4 max-[480px]:gap-4 max-[480px]:pb-6 max-[480px]:pt-3 md:grid-cols-12 md:gap-10 md:px-8 md:pb-16 md:pt-8 lg:pt-10">
+    <div class="flex flex-col justify-start md:col-span-5 md:justify-end lg:col-span-4">
+      <div class="flex items-center justify-between gap-3">
+        <p class="text-[11px] tracking-[0.28em] text-accent uppercase">
+          {hero.eyebrow}
+        </p>
+        <span
+          class="rounded-full border border-ink/15 px-2.5 py-1 text-[10px] text-ink-muted"
+        >
+          {site.demo.ribbon}
+        </span>
+      </div>
+
+      <div class="mt-4 hero-signature-rule h-px w-16 bg-accent"></div>
+
+      <h1
+        id="hero-title"
+        class="font-display mt-5 text-[clamp(2rem,8vw,3.25rem)] font-semibold leading-[1.08] tracking-tight text-ink"
+      >
+        {business.name}
+      </h1>
+
+      <p class="mt-3 max-w-md text-[15px] leading-snug text-ink sm:text-base sm:leading-relaxed md:mt-4 md:text-lg">
+        {business.tagline}
+      </p>
+      <p class="mt-1 hidden text-sm text-ink-muted sm:block">{business.subline}</p>
+      <p class="mt-2 text-[11px] leading-relaxed text-ink-muted/90 sm:text-xs">
+        <span class="sm:hidden">{business.access}</span>
+        <span class="hidden sm:inline">{business.address} · {business.access}</span>
+      </p>
+
+      <div class="mt-4 flex flex-col gap-2.5 sm:mt-6 sm:flex-row sm:items-stretch sm:gap-3">
+        <a
+          href={business.phoneTel}
+          data-cta="tel"
+          class="inline-flex min-h-11 flex-1 items-center justify-center rounded-sm bg-ink px-5 py-3 text-sm font-medium tracking-wide text-paper transition-transform active:scale-[0.98]"
+        >
+          {business.phoneLabel}
+        </a>
+        <a
+          href={business.line}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta="line"
+          class="inline-flex min-h-11 flex-1 items-center justify-center rounded-sm bg-line-brand px-5 py-3 text-sm font-medium tracking-wide text-white transition-transform active:scale-[0.98]"
+        >
+          {business.lineLabel}
+        </a>
+      </div>
+
+      <a
+        href={business.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cta="ig"
+        class="mt-2 inline-flex min-h-11 items-center gap-2 self-start text-sm font-medium text-ink underline decoration-accent/60 underline-offset-4 transition-colors hover:text-accent sm:mt-3"
+      >
+        {business.igLabel} 看作品 →
+      </a>
+    </div>
+
+    <div class="relative max-[480px]:-mx-1 md:col-span-7 lg:col-span-8">
+      <figure class="relative aspect-[5/4] max-h-[34vh] overflow-hidden bg-paper-deep max-[480px]:max-h-[32vh] sm:aspect-[4/5] sm:max-h-none md:aspect-[5/6] lg:aspect-[16/14]">
+        <img
+          src={hero.image}
+          alt={hero.imageAlt}
+          width="1200"
+          height="1500"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          class="h-full w-full object-cover object-center"
+        />
+        <figcaption
+          class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/55 to-transparent px-4 pb-4 pt-16 text-xs text-paper/85"
+        >
+          公開來源影像 · {site.demo.ribbon}
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>

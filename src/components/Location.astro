@@ -1,0 +1,58 @@
+---
+import { site } from "../config/site";
+const { business, hours } = site;
+---
+
+<section id="visit" class="border-t border-ink/10 bg-paper-deep py-16 md:py-24" aria-labelledby="visit-title">
+  <div class="mx-auto grid max-w-6xl gap-12 px-4 md:grid-cols-2 md:px-8">
+    <div class="reveal">
+      <p class="text-[11px] tracking-[0.24em] text-accent uppercase">Location</p>
+      <h2 id="visit-title" class="font-display mt-3 text-3xl font-semibold md:text-4xl">
+        營業時間與地址
+      </h2>
+
+      <dl class="mt-8 space-y-5">
+        {
+          hours.map((row) => (
+            <div class="flex gap-4 border-b border-ink/10 pb-4">
+              <dt class="w-24 shrink-0 text-sm font-medium text-ink">{row.label}</dt>
+              <dd class="text-sm text-ink-muted">
+                {row.value}
+                {"note" in row && row.note ? (
+                  <span class="mt-1 block text-xs opacity-80">{row.note}</span>
+                ) : null}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <address class="mt-8 not-italic">
+        <p class="text-sm font-medium text-ink">{business.name}</p>
+        <p class="mt-2 text-sm leading-relaxed text-ink-muted">{business.address}</p>
+        <p class="mt-2 text-sm text-ink-muted">{business.access}</p>
+      </address>
+
+      <a
+        href={business.mapsLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-6 inline-flex min-h-11 items-center text-sm font-medium text-ink underline decoration-accent/60 underline-offset-4"
+      >
+        在 Google 地圖開啟 →
+      </a>
+    </div>
+
+    <div class="reveal overflow-hidden rounded-sm border border-ink/10 bg-paper">
+      <iframe
+        title="NARCISS HAIR 地圖"
+        src={business.mapsEmbed}
+        width="600"
+        height="450"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="aspect-[4/3] h-full min-h-[280px] w-full border-0"
+      ></iframe>
+    </div>
+  </div>
+</section>
