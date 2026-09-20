@@ -5,6 +5,7 @@ import { asset } from "../lib/paths";
 import Seo from "../components/Seo.astro";
 import JsonLdLocalBusiness from "../components/JsonLdLocalBusiness.astro";
 import DemoGate from "../components/DemoGate.astro";
+import LegalChrome from "../components/LegalChrome.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
@@ -38,6 +39,7 @@ const { title, description, noindex = false, withJsonLd = false } = Astro.props;
     <DemoGate />
     <div id="site-shell">
       <a href="#content" class="skip-link">{SITE.ui.skipToContent}</a>
+      <LegalChrome />
       <Header />
       <main id="content">
         <slot />

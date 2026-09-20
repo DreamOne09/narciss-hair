@@ -15,14 +15,33 @@ export const SITE = {
     imageWatermark: "僅供 Demo｜琢奧",
   },
 
-  demo: {
-    gateTitle: "僅供 Demo 使用",
+  proposal: {
+    storageKey: "narciss-proposal-unlocked",
+    gateTitle: "提案預覽須知",
     gateBody:
-      "本站為琢奧科技展示用行銷 Demo，內容整理自 Google Maps、Instagram 等公開來源，非 NARCISS HAIR 委託製作。",
-    gateButton: "看 Demo",
-    ribbon: "僅供 Demo 使用",
+      "本站為琢奧科技行銷提案 Demo，未公開、非店家委託、未獲授權上線。使用公開資料與品牌素材僅供提案討論；正式授權前請勿對外轉傳或當成官方網站。",
+    passwordLabel: "預覽密碼",
+    submitLabel: "進入提案",
+    wrongPassword: "密碼錯誤，請再試一次。",
+    securityNote: "門禁僅防誤入，非正式資安。",
+    gateFooter: "琢奧科技｜僅供提案",
+  },
+
+  legalChrome: {
+    banner: "提案 Demo｜未授權公開｜非官方站",
+    toggleLabel: "完整免責說明",
+    disclaimerTitle: "提案 Demo 免責",
+    disclaimerBody:
+      "本網站由琢奧科技製作，僅供內部或客戶提案預覽，並非 NARCISS HAIR 官方網站，亦未獲店家授權對外上線。站內文案、影像整理自 Google Maps、Instagram 等公開來源，僅供討論行銷方向；時段、價格、優惠以店家現場為準。未經授權請勿截圖對外宣稱為已上線官網。",
+  },
+
+  demo: {
+    gateTitle: "提案預覽須知",
+    gateBody: "",
+    gateButton: "進入提案",
+    ribbon: "提案 Demo",
     disclaimer:
-      "本站僅供 Demo · 資料來自公開來源 · 非店家委託 · 時段與優惠可能變更",
+      "提案 Demo · 未授權公開 · 非官方站 · 資料來自公開來源",
   },
 
   agency: {

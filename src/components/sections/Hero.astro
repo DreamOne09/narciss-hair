@@ -21,7 +21,10 @@ const heroImage = asset(hero.image);
   <div class="container hero-stage">
     <div class="hero-text">
       <div class="hero-topline">
-        <p class="hero-eyebrow">{hero.eyebrow}</p>
+        <p class="hero-wordmark" aria-label="NARCISS HAIR">
+          <span class="wm-narciss">NARCISS</span>
+          <span class="wm-hair">HAIR</span>
+        </p>
         <span class="demo-badge">{demo.ribbon}</span>
       </div>
       <h1 id="hero-title">{hero.title}</h1>
@@ -87,8 +90,8 @@ const heroImage = asset(hero.image);
     inset: 0;
     z-index: -2;
     background:
-      linear-gradient(180deg, rgba(28, 27, 26, 0.55) 0%, rgba(28, 27, 26, 0.25) 35%, rgba(28, 27, 26, 0.75) 100%),
-      linear-gradient(100deg, rgba(28, 27, 26, 0.88) 0%, rgba(28, 27, 26, 0.4) 50%, rgba(28, 27, 26, 0.2) 100%);
+      linear-gradient(180deg, rgba(15, 20, 25, 0.5) 0%, rgba(15, 20, 25, 0.2) 38%, rgba(15, 20, 25, 0.82) 100%),
+      linear-gradient(105deg, rgba(15, 20, 25, 0.9) 0%, rgba(15, 20, 25, 0.45) 48%, rgba(15, 20, 25, 0.15) 100%);
   }
 
   .hero-watermark {
@@ -124,12 +127,28 @@ const heroImage = asset(hero.image);
     margin-bottom: var(--space-2);
   }
 
-  .hero-eyebrow {
+  .hero-wordmark {
     margin: 0;
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    letter-spacing: 0.08em;
-    color: var(--color-mist-rose);
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    line-height: 1;
+  }
+
+  .wm-narciss {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    letter-spacing: 0.28em;
+    font-weight: 600;
+    color: var(--color-dark-text);
+  }
+
+  .wm-hair {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.42em;
+    font-weight: 500;
+    color: var(--color-dark-text-muted);
   }
 
   .demo-badge {
@@ -184,13 +203,14 @@ const heroImage = asset(hero.image);
   }
 
   .button-hero-alt {
-    background: var(--color-copper);
+    background: var(--gradient-accent);
     box-shadow: var(--shadow-glow);
+    border: none;
   }
 
   .button-hero-ghost {
     background: transparent;
-    border: 2px solid rgba(196, 165, 116, 0.65);
+    border: 2px solid rgba(184, 146, 90, 0.55);
     color: var(--color-dark-text);
     box-shadow: none;
     font-size: var(--text-sm);

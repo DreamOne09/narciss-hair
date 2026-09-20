@@ -1,0 +1,74 @@
+---
+import { SITE } from "../config/site";
+
+const { legalChrome } = SITE;
+---
+
+<div class="legal-chrome" role="note" aria-label="提案 Demo 法律提示">
+  <div class="container legal-chrome-inner">
+    <p class="legal-chrome-banner">{legalChrome.banner}</p>
+    <details class="legal-chrome-details">
+      <summary>{legalChrome.toggleLabel}</summary>
+      <div class="legal-chrome-full">
+        <p class="legal-chrome-full-title">{legalChrome.disclaimerTitle}</p>
+        <p>{legalChrome.disclaimerBody}</p>
+      </div>
+    </details>
+  </div>
+</div>
+
+<style>
+  .legal-chrome {
+    background: var(--color-ink-navy);
+    color: var(--color-dark-text-muted);
+    border-bottom: 1px solid rgba(245, 241, 234, 0.12);
+    font-size: 0.78rem;
+  }
+
+  .legal-chrome-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    padding-block: 0.55rem;
+  }
+
+  .legal-chrome-banner {
+    margin: 0;
+    font-weight: 600;
+    color: var(--color-dark-text);
+    letter-spacing: 0.04em;
+  }
+
+  .legal-chrome-details {
+    margin: 0;
+  }
+
+  .legal-chrome-details summary {
+    cursor: pointer;
+    color: var(--color-copper-bright);
+    font-weight: 600;
+    list-style: none;
+  }
+
+  .legal-chrome-details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .legal-chrome-full {
+    margin-top: 0.65rem;
+    max-width: 52rem;
+    line-height: 1.65;
+  }
+
+  .legal-chrome-full-title {
+    font-weight: 700;
+    color: var(--color-dark-text);
+    margin: 0 0 0.35rem;
+  }
+
+  .legal-chrome-full p:last-child {
+    margin: 0;
+  }
+</style>

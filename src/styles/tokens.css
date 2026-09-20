@@ -1,60 +1,61 @@
 :root {
-  /* VI W2 — 深炭／暖灰木質／銅金一點（主 CTA）＋霧玫瑰（輕標） */
-  --color-charcoal: #1c1b1a;
-  --color-charcoal-soft: #2a2826;
-  --color-wood: #e8e2d9;
-  --color-wood-deep: #d9d0c4;
-  --color-mist-rose: #c4a8a0;
-  --color-copper: #a8895c;
-  --color-copper-bright: #c4a574;
+  /* CIS — 店招深墨 navy／暖木底／銅金僅 CTA（見 docs/CIS-CHECK.md） */
+  --color-ink-navy: #0f1419;
+  --color-charcoal: #15181d;
+  --color-charcoal-soft: #1e2228;
+  --color-wood: #ece7df;
+  --color-wood-deep: #ddd5c9;
+  --color-label-muted: #7a746c;
+  --color-copper: #9a7848;
+  --color-copper-bright: #b8925a;
 
   --color-bg: var(--color-wood);
-  --color-surface: #faf8f4;
+  --color-surface: #faf8f5;
   --color-surface-alt: var(--color-wood-deep);
   --color-text: var(--color-charcoal);
-  --color-text-muted: #5a534c;
+  --color-text-muted: #4f4a44;
   --color-accent: var(--color-copper);
-  --color-accent-hover: #8a7349;
-  --color-on-accent: #faf8f4;
-  --color-border: #d5cdc2;
+  --color-accent-hover: #7d6238;
+  --color-on-accent: #faf8f5;
+  --color-border: #cfc6b8;
   --color-rating: var(--color-copper);
 
-  --color-dark-bg: var(--color-charcoal);
+  --color-dark-bg: var(--color-ink-navy);
   --color-dark-surface: var(--color-charcoal-soft);
-  --color-dark-text: #f5f1ea;
-  --color-dark-text-muted: #c9bfb3;
+  --color-dark-text: #f3efe8;
+  --color-dark-text-muted: #b8b0a4;
   --color-accent-bright: var(--color-copper-bright);
 
-  --color-hero-veil: rgba(28, 27, 26, 0.72);
+  --color-hero-veil: rgba(15, 20, 25, 0.78);
   --color-line-brand: #06c755;
 
-  --gradient-accent: linear-gradient(135deg, var(--color-copper-bright) 0%, var(--color-copper) 100%);
+  --gradient-accent: linear-gradient(135deg, #b8925a 0%, #9a7848 100%);
   --gradient-icon: linear-gradient(135deg, #8a7349 0%, #5c4a32 100%);
 
-  /* 字級節奏 1 / 1.25 / 1.6（VI） */
-  --font-heading: "Noto Serif TC", Georgia, "Songti TC", serif;
+  --font-display: "Noto Serif TC", Georgia, "Songti TC", serif;
+  --font-heading: var(--font-display);
   --font-body: "Noto Sans TC", system-ui, -apple-system, "Segoe UI", sans-serif;
   --text-base: 1rem;
   --text-sm: 0.875rem;
-  --text-lg: 1.25rem;
-  --text-h1: clamp(1.85rem, 5.5vw, 3.5rem);
-  --text-h2: clamp(1.6rem, 3.5vw, 2.35rem);
-  --text-h3: 1.2rem;
-  --leading: 1.6;
-  --tracking-wide: 0.14em;
+  --text-lg: 1.3125rem;
+  --text-h1: clamp(2rem, 6vw, 3.75rem);
+  --text-h2: clamp(1.75rem, 3.8vw, 2.65rem);
+  --text-h3: 1.25rem;
+  --leading: 1.65;
+  --tracking-wide: 0.1em;
 
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
-  --space-4: 2.5rem;
-  --space-section: clamp(3.75rem, 9vw, 7rem);
-  --radius: 10px;
+  --space-4: 2.75rem;
+  --space-section: clamp(4rem, 10vw, 7.5rem);
+  --radius: 8px;
   --radius-sm: 6px;
   --radius-pill: 999px;
-  --shadow: 0 2px 14px rgba(28, 27, 26, 0.07);
-  --shadow-lift: 0 16px 40px rgba(28, 27, 26, 0.12);
-  --shadow-glow: 0 8px 26px rgba(168, 137, 92, 0.32);
-  --content-width: 1180px;
-  --prose-width: 65ch;
+  --shadow: 0 2px 16px rgba(15, 20, 25, 0.06);
+  --shadow-lift: 0 20px 48px rgba(15, 20, 25, 0.14);
+  --shadow-glow: 0 10px 32px rgba(154, 120, 72, 0.35);
+  --content-width: 1200px;
+  --prose-width: 62ch;
   --transition: 220ms ease;
 }

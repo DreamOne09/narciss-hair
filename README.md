@@ -4,6 +4,10 @@
 
 > **僅供 Demo 使用** · 公開來源整理 · **非店家委託** · **由琢奧科技製作**
 
+## 提案預覽密碼（門禁）
+
+冷啟動一律顯示**全屏提案門**；同分頁輸入密碼 **`demo`**（區分大小寫）後以 `sessionStorage` 解鎖，關閉分頁需重輸。此為客端防誤入，**非正式資安**。
+
 ## GitHub Pages（Project site）
 
 公開網址：`https://dreamone09.github.io/narciss-hair/`

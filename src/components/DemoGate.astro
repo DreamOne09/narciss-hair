@@ -1,29 +1,45 @@
 ---
 import { SITE } from "../config/site";
 
-const { demo, agency } = SITE;
+const { proposal, agency } = SITE;
 ---
 
 <div
   id="demo-gate"
-  class="demo-gate"
+  class="proposal-gate"
   role="dialog"
   aria-modal="true"
   aria-labelledby="demo-gate-title"
   aria-describedby="demo-gate-desc"
 >
-  <div class="demo-gate-panel">
-    <h2 id="demo-gate-title">{demo.gateTitle}</h2>
-    <p id="demo-gate-desc">{demo.gateBody}</p>
-    <p class="demo-gate-credit">{agency.credit}</p>
-    <button type="button" id="demo-gate-enter" class="button button-dark">
-      {demo.gateButton}
-    </button>
+  <div class="proposal-gate-inner">
+    <div class="proposal-gate-panel">
+      <p class="proposal-gate-kicker">{agency.name}</p>
+      <h1 id="demo-gate-title">{proposal.gateTitle}</h1>
+      <p id="demo-gate-desc" class="proposal-gate-body">{proposal.gateBody}</p>
+
+      <form id="proposal-gate-form" class="proposal-gate-form" novalidate>
+        <label for="proposal-password">{proposal.passwordLabel}</label>
+        <input
+          type="password"
+          id="proposal-password"
+          name="password"
+          autocomplete="off"
+          spellcheck="false"
+          required
+        />
+        <p id="proposal-gate-error" class="proposal-gate-error" hidden role="alert"></p>
+        <button type="submit" class="button proposal-gate-submit">{proposal.submitLabel}</button>
+      </form>
+
+      <p class="proposal-gate-note">{proposal.securityNote}</p>
+    </div>
+    <p class="proposal-gate-footer">{proposal.gateFooter}</p>
   </div>
 </div>
 
-<script>
-  const STORAGE_KEY = "narciss-hair-demo-dismissed";
+<script define:vars={{ storageKey: proposal.storageKey, wrongMsg: proposal.wrongPassword }}>
+  const EXPECTED = "demo";
 
   function lockScroll() {
     document.documentElement.classList.add("demo-gate-locked");
@@ -37,71 +53,136 @@ const { demo, agency } = SITE;
     document.getElementById("site-shell")?.classList.remove("demo-gate-locked");
   }
 
-  function preventScroll(e: Event) {
+  function preventScroll(e) {
     e.preventDefault();
   }
 
   const gate = document.getElementById("demo-gate");
-  const enter = document.getElementById("demo-gate-enter");
+  const form = document.getElementById("proposal-gate-form");
+  const input = document.getElementById("proposal-password");
+  const errorEl = document.getElementById("proposal-gate-error");
 
-  if (gate && enter) {
-    if (sessionStorage.getItem(STORAGE_KEY) === "1") {
+  if (gate && form && input) {
+    if (sessionStorage.getItem(storageKey) === "1") {
       gate.remove();
     } else {
       lockScroll();
       window.addEventListener("wheel", preventScroll, { passive: false });
       window.addEventListener("touchmove", preventScroll, { passive: false });
 
-      enter.addEventListener("click", () => {
-        sessionStorage.setItem(STORAGE_KEY, "1");
-        window.removeEventListener("wheel", preventScroll);
-        window.removeEventListener("touchmove", preventScroll);
-        unlockScroll();
-        gate.remove();
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const value = input.value;
+        if (value === EXPECTED) {
+          sessionStorage.setItem(storageKey, "1");
+          window.removeEventListener("wheel", preventScroll);
+          window.removeEventListener("touchmove", preventScroll);
+          unlockScroll();
+          gate.remove();
+          return;
+        }
+        if (errorEl) {
+          errorEl.textContent = wrongMsg;
+          errorEl.hidden = false;
+        }
+        input.focus();
       });
     }
   }
 </script>
 
 <style>
-  .demo-gate {
+  .proposal-gate {
     position: fixed;
     inset: 0;
-    z-index: 200;
-    display: grid;
-    place-items: center;
-    padding: var(--space-3);
-    background: color-mix(in srgb, var(--color-text) 45%, transparent);
-    backdrop-filter: blur(3px);
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-ink-navy);
+    color: var(--color-dark-text);
+    overflow: auto;
   }
 
-  .demo-gate-panel {
-    width: min(100%, 26rem);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    padding: var(--space-4);
-    box-shadow: var(--shadow-lift);
+  .proposal-gate-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-4) var(--space-3);
+    min-height: 100dvh;
   }
 
-  .demo-gate-panel h2 {
-    margin-bottom: var(--space-2);
-    font-size: 1.6rem;
+  .proposal-gate-panel {
+    width: min(100%, 28rem);
   }
 
-  .demo-gate-panel p {
+  .proposal-gate-kicker {
     font-size: var(--text-sm);
-    color: var(--color-text-muted);
+    letter-spacing: 0.12em;
+    color: var(--color-dark-text-muted);
+    margin: 0 0 var(--space-2);
   }
 
-  .demo-gate-credit {
+  .proposal-gate-panel h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 6vw, 2.35rem);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    color: var(--color-dark-text);
+  }
+
+  .proposal-gate-body {
+    font-size: var(--text-sm);
+    line-height: var(--leading);
+    color: var(--color-dark-text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .proposal-gate-form label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+
+  .proposal-gate-form input {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid rgba(245, 241, 234, 0.25);
+    border-radius: var(--radius-sm);
+    background: rgba(0, 0, 0, 0.25);
+    color: var(--color-dark-text);
+    font-size: var(--text-base);
+    margin-bottom: var(--space-1);
+  }
+
+  .proposal-gate-error {
+    color: #f0a8a0;
+    font-size: var(--text-sm);
+    margin: 0 0 var(--space-1);
+  }
+
+  .proposal-gate-submit {
+    width: 100%;
+    min-height: 48px;
+    margin-top: var(--space-1);
+  }
+
+  .proposal-gate-note {
+    margin-top: var(--space-2);
     font-size: 0.75rem;
+    color: var(--color-dark-text-muted);
     opacity: 0.85;
   }
 
-  .demo-gate-panel .button {
-    width: 100%;
-    margin-top: var(--space-3);
-    min-height: 44px;
+  .proposal-gate-footer {
+    margin-top: auto;
+    padding-top: var(--space-4);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--color-dark-text-muted);
+    text-align: center;
   }
 </style>
