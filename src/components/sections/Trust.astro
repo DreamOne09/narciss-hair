@@ -1,7 +1,7 @@
 ---
 import { SITE } from "../../config/site";
 
-const { trust, business } = SITE;
+const { trust } = SITE;
 ---
 
 <section id="trust" class="section section-alt">
@@ -10,10 +10,20 @@ const { trust, business } = SITE;
     <h2>{trust.title}</h2>
     <p class="intro">{trust.intro}</p>
 
-    <aside class="pending reveal">
-      <p class="pending-label">{trust.pendingLabel}</p>
-      <p>{trust.pendingBody}</p>
-    </aside>
+    <div class="trust-actions reveal">
+      {
+        trust.actions.map((action) => (
+          <a
+            class:list={["button", action.variant === "secondary" && "button-secondary"]}
+            href={action.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {action.label}
+          </a>
+        ))
+      }
+    </div>
 
     <ul class="trust-list">
       {
@@ -25,40 +35,36 @@ const { trust, business } = SITE;
         ))
       }
     </ul>
-
-    <p class="trust-link">
-      <a href={business.googleBusinessUrl} target="_blank" rel="noopener noreferrer">
-        {trust.linkLabel}
-      </a>
-    </p>
   </div>
 </section>
 
 <style>
   .intro {
     color: var(--color-text-muted);
+    font-size: var(--text-lg);
     margin-bottom: var(--space-3);
+    max-width: 40rem;
   }
 
-  .pending {
-    border-left: 3px solid var(--color-mist-rose);
-    padding: var(--space-2) var(--space-3);
+  .trust-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
     margin-bottom: var(--space-4);
-    background: var(--color-surface);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   }
 
-  .pending-label {
-    font-weight: 700;
-    color: var(--color-accent);
-    margin: 0 0 0.35rem;
-    font-size: var(--text-sm);
+  @media (min-width: 480px) {
+    .trust-actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
   }
 
-  .pending p:last-child {
-    margin: 0;
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
+  .trust-actions .button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .trust-list {
@@ -71,7 +77,8 @@ const { trust, business } = SITE;
 
   @media (min-width: 768px) {
     .trust-list {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
     }
   }
 
@@ -80,13 +87,13 @@ const { trust, business } = SITE;
     padding-top: var(--space-2);
   }
 
+  .trust-item h3 {
+    font-size: var(--text-h3);
+  }
+
   .trust-item p {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
     margin: 0;
-  }
-
-  .trust-link {
-    margin-top: var(--space-3);
   }
 </style>
