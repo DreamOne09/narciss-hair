@@ -1,6 +1,7 @@
 ---
 // About section: the business's story — framed image + text with a drop cap.
 import { SITE } from "../../config/site";
+import { asset } from "../../lib/paths";
 
 const { about } = SITE;
 ---
@@ -9,7 +10,7 @@ const { about } = SITE;
   <div class="container about-grid">
     <figure class="about-figure reveal">
       <img
-        src={about.image}
+        src={asset(about.image)}
         alt={about.imageAlt}
         class="about-image"
         width="520"

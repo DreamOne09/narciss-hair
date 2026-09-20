@@ -63,19 +63,19 @@ export const SITE = {
   ] as OpeningHours[],
 
   navigation: [
-    { label: "服務", href: "/#services" },
-    { label: "關於", href: "/#about" },
-    { label: "作品", href: "/#gallery" },
-    { label: "評價與信任", href: "/#trust" },
-    { label: "到店", href: "/#info" },
-    { label: "常見問題", href: "/#faq" },
+    { label: "作品", href: "#gallery" },
+    { label: "關於", href: "#about" },
+    { label: "評價與信任", href: "#trust" },
+    { label: "服務", href: "#services" },
+    { label: "到店", href: "#info" },
+    { label: "常見問題", href: "#faq" },
   ],
 
   hero: {
     layout: "immersive" as "editorial" | "split" | "immersive",
     title: "中山站高質感美髮",
     titleHighlight: "",
-    subtitle: "剪染護一次搞定 · 電話或 IG／LINE 預約",
+    subtitle: "剪染護一次搞定 · 電話或 LINE 預約",
     image: "/gallery/work-9.webp",
     imageAlt: "NARCISS HAIR 沙龍空間與髮型作品氛圍",
     eyebrow: "NARCISS HAIR",
@@ -87,8 +87,8 @@ export const SITE = {
 
   services: {
     eyebrow: "服務",
-    title: "服務項目",
-    intro: "依髮質與生活節奏設計，不是制式套餐卡；以下為公開資料整理之主要項目。",
+    title: "服務一覽",
+    intro: "完整項目與報價請來電或 LINE 詢問；以下為公開資料整理。",
     items: [
       {
         title: "剪髮設計",
@@ -144,6 +144,7 @@ export const SITE = {
   gallery: {
     eyebrow: "作品",
     title: "作品與空間",
+    lead: "霧感造型與沙龍氛圍——先看作品，再決定要不要預約。",
     images: [
       { src: "/gallery/work-1.webp", alt: "髮廊環境與造型" },
       { src: "/gallery/work-3.webp", alt: "室內空間" },

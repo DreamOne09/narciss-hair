@@ -5,6 +5,7 @@
 // SITE.business and SITE.openingHours: no data to maintain twice.
 // Validate with: https://search.google.com/test/rich-results
 import { SITE } from "../config/site";
+import { asset } from "../lib/paths";
 
 // schema.org names days in English
 const SCHEMA_DAYS = [
@@ -38,7 +39,7 @@ const data = {
   ...(SITE.business.email
     ? { email: SITE.business.email }
     : {}),
-  image: new URL(SITE.hero.image, SITE.url).href,
+  image: new URL(asset(SITE.hero.image), Astro.site ?? SITE.url).href,
   ...(SITE.business.priceRange ? { priceRange: SITE.business.priceRange } : {}),
   address: {
     "@type": "PostalAddress",
