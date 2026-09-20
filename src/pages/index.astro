@@ -6,10 +6,9 @@ import Services from "../components/sections/Services.astro";
 import About from "../components/sections/About.astro";
 import Gallery from "../components/sections/Gallery.astro";
 import Trust from "../components/sections/Trust.astro";
-import CtaBanner from "../components/sections/CtaBanner.astro";
-import Faq from "../components/sections/Faq.astro";
 import PracticalInfo from "../components/sections/PracticalInfo.astro";
-import Contact from "../components/sections/Contact.astro";
+import Faq from "../components/sections/Faq.astro";
+import CtaBanner from "../components/sections/CtaBanner.astro";
 ---
 
 <Base title={`${SITE.name} — ${SITE.tagline}`} description={SITE.description} withJsonLd>
@@ -18,8 +17,7 @@ import Contact from "../components/sections/Contact.astro";
   <About />
   <Gallery />
   <Trust />
-  <CtaBanner />
-  <Faq />
   <PracticalInfo />
-  <Contact />
+  <Faq />
+  <CtaBanner />
 </Base>

@@ -1,47 +1,60 @@
 :root {
-  --color-bg: #f6f3ed;
-  --color-surface: #ffffff;
-  --color-surface-alt: #ebe5db;
-  --color-text: #141414;
-  --color-text-muted: #5c5c5c;
-  --color-accent: #8a7349;
-  --color-accent-hover: #6f5c3a;
-  --color-on-accent: #ffffff;
-  --color-border: #ddd6c8;
-  --color-rating: #a8895c;
+  /* VI W2 — 深炭／暖灰木質／銅金一點（主 CTA）＋霧玫瑰（輕標） */
+  --color-charcoal: #1c1b1a;
+  --color-charcoal-soft: #2a2826;
+  --color-wood: #e8e2d9;
+  --color-wood-deep: #d9d0c4;
+  --color-mist-rose: #c4a8a0;
+  --color-copper: #a8895c;
+  --color-copper-bright: #c4a574;
 
-  --color-dark-bg: #141414;
-  --color-dark-surface: #1f1f1f;
-  --color-dark-text: #f6f3ed;
-  --color-dark-text-muted: #c8c0b4;
-  --color-accent-bright: #c4a574;
+  --color-bg: var(--color-wood);
+  --color-surface: #faf8f4;
+  --color-surface-alt: var(--color-wood-deep);
+  --color-text: var(--color-charcoal);
+  --color-text-muted: #5a534c;
+  --color-accent: var(--color-copper);
+  --color-accent-hover: #8a7349;
+  --color-on-accent: #faf8f4;
+  --color-border: #d5cdc2;
+  --color-rating: var(--color-copper);
 
-  --gradient-accent: linear-gradient(135deg, #a8895c 0%, #8a7349 100%);
+  --color-dark-bg: var(--color-charcoal);
+  --color-dark-surface: var(--color-charcoal-soft);
+  --color-dark-text: #f5f1ea;
+  --color-dark-text-muted: #c9bfb3;
+  --color-accent-bright: var(--color-copper-bright);
+
+  --color-hero-veil: rgba(28, 27, 26, 0.72);
+  --color-line-brand: #06c755;
+
+  --gradient-accent: linear-gradient(135deg, var(--color-copper-bright) 0%, var(--color-copper) 100%);
   --gradient-icon: linear-gradient(135deg, #8a7349 0%, #5c4a32 100%);
 
+  /* 字級節奏 1 / 1.25 / 1.6（VI） */
   --font-heading: "Noto Serif TC", Georgia, "Songti TC", serif;
   --font-body: "Noto Sans TC", system-ui, -apple-system, "Segoe UI", sans-serif;
   --text-base: 1rem;
   --text-sm: 0.875rem;
-  --text-lg: 1.125rem;
-  --text-h1: clamp(2.4rem, 6vw, 3.8rem);
-  --text-h2: clamp(1.75rem, 4vw, 2.5rem);
+  --text-lg: 1.25rem;
+  --text-h1: clamp(1.85rem, 5.5vw, 3.5rem);
+  --text-h2: clamp(1.6rem, 3.5vw, 2.35rem);
   --text-h3: 1.2rem;
-  --leading: 1.7;
-  --tracking-wide: 0.12em;
+  --leading: 1.6;
+  --tracking-wide: 0.14em;
 
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
   --space-4: 2.5rem;
-  --space-section: clamp(3.5rem, 9vw, 6.5rem);
-  --radius: 12px;
-  --radius-sm: 8px;
+  --space-section: clamp(3.75rem, 9vw, 7rem);
+  --radius: 10px;
+  --radius-sm: 6px;
   --radius-pill: 999px;
-  --shadow: 0 2px 14px rgba(20, 20, 20, 0.06);
-  --shadow-lift: 0 14px 34px rgba(20, 20, 20, 0.1);
-  --shadow-glow: 0 8px 24px rgba(138, 115, 73, 0.28);
-  --content-width: 1120px;
+  --shadow: 0 2px 14px rgba(28, 27, 26, 0.07);
+  --shadow-lift: 0 16px 40px rgba(28, 27, 26, 0.12);
+  --shadow-glow: 0 8px 26px rgba(168, 137, 92, 0.32);
+  --content-width: 1180px;
   --prose-width: 65ch;
   --transition: 220ms ease;
 }

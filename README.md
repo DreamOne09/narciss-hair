@@ -1,74 +1,47 @@
-# NARCISS HAIR — 靜態行銷 Demo（Astro）
+# NARCISS HAIR — 靜態行銷 Demo（Astro-Chalet 家）
 
-台北中山區 **NARCISS HAIR** 的美業行銷站 Demo：大圖 editorial 版型、Local SEO、雙 CTA 轉換動線。**純靜態** `astro build`，無資料庫、無 CMS 後台。
+台北中山區 **NARCISS HAIR** 的美業行銷站 Demo。**純靜態** `astro build`，無資料庫、無 CMS。
 
-> **僅供 Demo 使用** · 內容整理自 Google Maps、Instagram 等公開來源 · **非店家委託**  
-> **由琢奧科技製作**
+> **僅供 Demo 使用** · 公開來源整理 · **非店家委託** · **由琢奧科技製作**
 
-## 官方網址（目標 alias）
+## 官方 alias（G5 交付）
 
 `https://narciss-hair.vercel.app`
-
-（臨時 `*.vercel.app` 部署不算驗收交付；請用下方官方腳本綁定 alias。）
-
-## 改文案：只改一個檔
-
-所有店名、聯絡、時段、服務、FAQ、SEO、圖片路徑都在：
-
-```text
-src/config/site.ts
-```
-
-改完存檔 → `npm run dev` 預覽 → `npm run build` 建置。
-
-## 本地開發
-
-```bash
-npm install
-npm run dev
-```
-
-瀏覽器開啟 http://localhost:43123
-
-## 建置
-
-```bash
-npm run build
-npm run preview
-```
-
-輸出目錄：`dist/`
-
-## G5 自動檢查（Demo 進站窗 + 375 首屏 CTA）
-
-```bash
-npm run preview &
-TEST_URL=http://127.0.0.1:43123 node scripts/verify-gate.cjs
-```
-
-## 部署（官方 Vercel alias）
-
-需要具 deploy / alias 權限的 `VERCEL_TOKEN`：
 
 ```bash
 export VERCEL_TOKEN=your_token
 ./scripts/deploy-official.sh
 ```
 
-**禁止**使用匿名 temporary 部署當正式交付。
+禁止以 anonymous `temporary-*.vercel.app` 當正式交付。
 
-## 技術棧
+## 改文案：只改一個檔
 
-- [Astro](https://astro.build/) 5（static output）
-- Tailwind CSS v4
-- `@astrojs/sitemap`（sitemap）
-- LocalBusiness + FAQ JSON-LD
-- 進站 Demo 置中 overlay（未點「看 Demo」前鎖捲動、CTA 不可點）
+```text
+src/config/site.ts
+```
 
-## 區塊結構
+（Astro-Chalet 哲學：元件不寫死文案，全部讀 `SITE`。）
 
-Hero · 服務（editorial 圖文）· 關於 · Gallery · 信任說明（不捏造評價）· 預約步驟 · 時段／地址／地圖 · FAQ · CTA Banner
+## 本地
 
-## Demo 免責
+```bash
+npm install
+npm run dev      # http://localhost:43123
+npm run build    # → dist/
+npm run verify:g5
+```
 
-本 repo 為 **NT$36,000 等級行銷站展示標的** 之 Demo 實作；正式客製、素材改稿、預約／會員系統另議。
+## 區塊
+
+Hero（editorial 雙 CTA）· 服務（圖文交替，非四欄卡）· 關於 · Gallery · 信任（不造假評價）· CTA · FAQ · 時段地址 · 聯絡
+
+## Demo 進站窗
+
+置中 overlay；未按「看 Demo」鎖 `html` / `body` / `#site-shell` 捲動，背後 CTA 不可點。
+
+## 技術
+
+- Astro 6 + `@astrojs/sitemap`
+- HairSalon JSON-LD + FAQ JSON-LD
+- CSS scroll reveal（無 GSAP／無 WebGL）

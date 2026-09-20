@@ -10,12 +10,13 @@ const { services } = SITE;
     <h2>{services.title}</h2>
     <p class="intro">{services.intro}</p>
 
-    <div class="service-stack">
+    <div class="service-grid">
       {
         services.items.map((item, index) => (
-          <article class:list={["service-row reveal", { reverse: index % 2 === 1 }]}>
+          <article class="service-card reveal">
             <figure class="service-media">
-              <img src={item.image} alt={item.imageAlt} width="800" height="600" loading="lazy" />
+              <img src={item.image} alt={item.imageAlt} width="640" height="480" loading="lazy" />
+              <span class="wm">{SITE.vi.imageWatermark}</span>
             </figure>
             <div class="service-body">
               <p class="service-num" aria-hidden="true">
@@ -38,35 +39,33 @@ const { services } = SITE;
     margin-bottom: var(--space-4);
   }
 
-  .service-stack {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-section);
-  }
-
-  .service-row {
+  .service-grid {
     display: grid;
-    gap: var(--space-3);
-    align-items: center;
+    gap: var(--space-4);
   }
 
   @media (min-width: 768px) {
-    .service-row {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-4);
+    .service-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4) var(--space-3);
     }
+  }
 
-    .service-row.reverse .service-media {
-      order: 2;
+  @media (min-width: 1440px) {
+    .service-grid {
+      gap: var(--space-section) var(--space-4);
     }
+  }
 
-    .service-row.reverse .service-body {
-      order: 1;
-    }
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
   }
 
   .service-media {
     margin: 0;
+    position: relative;
     overflow: hidden;
     border-radius: var(--radius-sm);
     background: var(--color-surface-alt);
@@ -78,20 +77,33 @@ const { services } = SITE;
     object-fit: cover;
   }
 
+  .wm {
+    position: absolute;
+    left: 0.5rem;
+    bottom: 0.5rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.72);
+    background: rgba(28, 27, 26, 0.45);
+    padding: 0.2rem 0.45rem;
+    border-radius: var(--radius-sm);
+  }
+
   .service-num {
     font-family: var(--font-heading);
-    font-size: 0.85rem;
-    letter-spacing: var(--tracking-wide);
+    font-size: 0.8rem;
     color: var(--color-accent);
-    margin: 0 0 var(--space-1);
+    letter-spacing: var(--tracking-wide);
+    margin: 0 0 0.35rem;
   }
 
   .service-body h3 {
-    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    font-size: var(--text-h3);
   }
 
   .service-body p {
     color: var(--color-text-muted);
     margin: 0;
+    font-size: var(--text-sm);
   }
 </style>

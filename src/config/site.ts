@@ -7,9 +7,13 @@ export const SITE = {
   lang: "zh-TW",
   ogLocale: "zh_TW",
   name: "NARCISS HAIR",
-  tagline: "中山站巷弄裡，用髮型說你的日常",
+  tagline: "中山站後巷的高質感美髮，剪染護一次搞定",
   description:
-    "NARCISS HAIR 台北中山區美髮沙龍 Demo。剪髮、染髮、護髮、造型設計，寵物友善空間。捷運中山站步行約 5 分鐘。",
+    "NARCISS HAIR 台北中山區美髮沙龍。霧感／自然系造型，電話或 LINE／IG 預約。公開資料 Demo，非店家委託。",
+
+  vi: {
+    imageWatermark: "僅供 Demo｜琢奧",
+  },
 
   demo: {
     gateTitle: "僅供 Demo 使用",
@@ -68,18 +72,17 @@ export const SITE = {
   ],
 
   hero: {
-    layout: "editorial" as "editorial" | "split" | "immersive",
-    title: "NARCISS HAIR",
+    layout: "immersive" as "editorial" | "split" | "immersive",
+    title: "中山站高質感美髮",
     titleHighlight: "",
-    subtitle:
-      "剪染燙護與造型設計，藏在中山站後巷的工業風沙龍；公開資訊亦提及寵物友善。",
+    subtitle: "剪染護一次搞定 · 電話或 IG／LINE 預約",
     image: "/gallery/work-9.webp",
     imageAlt: "NARCISS HAIR 沙龍空間與髮型作品氛圍",
-    eyebrow: "Zhongshan · Taipei",
+    eyebrow: "NARCISS HAIR",
     primaryCta: { label: "打電話", href: "tel:+886225636233" },
     secondaryCta: { label: "LINE 預約", href: "https://lin.ee/Bc0WDRi" },
-    tertiaryCta: { label: "Instagram 看作品", href: "https://www.instagram.com/narciss.hair/" },
-    highlights: [] as string[],
+    tertiaryCta: { label: "Instagram", href: "https://www.instagram.com/narciss.hair/" },
+    highlights: ["寵物友善", "中山站步行約 5 分鐘"] as string[],
   },
 
   services: {
@@ -154,23 +157,27 @@ export const SITE = {
 
   trust: {
     eyebrow: "Trust",
-    title: "為什麼選這裡",
-    intro: "本 Demo 不捏造星等或評價文案；請至 Google Maps、Instagram 等公開平台自行查證。",
+    title: "評價與信任",
+    intro:
+      "信任素材僅用公開評價／媒體摘錄並標來源；本 Demo 未獲授權嵌入完整評價全文。",
+    pendingLabel: "待業主補",
+    pendingBody:
+      "正式上線前，由業主提供可引用之 Google 評價摘錄或媒體連結；在此之前不以假評價或星等充數。",
     items: [
       {
-        title: "公開評價可自查",
-        body: "我們不在網站上嵌入假評價；你可以在 Google 等平台的公開留言中閱讀真實回饋。",
+        title: "公開平台可自查",
+        body: "請至 Google Maps、Instagram 查看真實留言；本頁不捏造星等。",
       },
       {
-        title: "巷弄裡的穩定據點",
-        body: "鄰近捷運中山站，公開敘述提及十餘年在地經營，適合想找固定設計師的客人。",
+        title: "在地與交通",
+        body: "公開資訊：中山站後巷、十餘年在地經營敘述、捷運中山站 4 號出口步行約 5 分鐘。",
       },
       {
-        title: "空間與氛圍",
-        body: "工業風、木質、植栽造景——公開照片裡常被提到的 chill 沙龍感。",
+        title: "空間關鍵字",
+        body: "工業風、木質、霧感髮色——對齊 DESIGN-PLAN 情緒，非虛構文案。",
       },
     ],
-    linkLabel: "在 Google 地圖查看公開資訊 →",
+    linkLabel: "Google 地圖公開資訊 →",
   },
 
   reviews: {
@@ -252,6 +259,7 @@ export const SITE = {
     notFoundText: "您要找的頁面不存在或已移動。",
     notFoundCta: "返回首頁",
     demoImageCredit: "公開來源影像",
+    imageWatermark: "僅供 Demo｜琢奧",
     petFriendlyLabel: "寵物友善",
   },
 } as const;

@@ -31,10 +31,10 @@ import { SITE } from "../config/site";
     position: sticky;
     top: 0;
     z-index: 50;
-    background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+    background: color-mix(in srgb, var(--color-dark-bg) 88%, transparent);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid rgba(245, 241, 234, 0.1);
   }
 
   .header-inner {
@@ -47,15 +47,14 @@ import { SITE } from "../config/site";
 
   .brand {
     font-family: var(--font-heading);
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 700;
-    color: var(--color-text);
+    color: var(--color-dark-text);
     text-decoration: none;
-    letter-spacing: 0.02em;
   }
 
   .brand:hover {
-    color: var(--color-accent);
+    color: var(--color-accent-bright);
   }
 
   .nav {
@@ -65,7 +64,7 @@ import { SITE } from "../config/site";
   }
 
   .nav a {
-    color: var(--color-text-muted);
+    color: var(--color-dark-text-muted);
     text-decoration: none;
     font-size: var(--text-sm);
     font-weight: 600;
@@ -73,7 +72,7 @@ import { SITE } from "../config/site";
   }
 
   .nav a:hover {
-    color: var(--color-accent);
+    color: var(--color-accent-bright);
   }
 
   .burger {
@@ -89,7 +88,7 @@ import { SITE } from "../config/site";
   .burger span {
     width: 24px;
     height: 2.5px;
-    background: var(--color-text);
+    background: var(--color-dark-text);
     border-radius: 2px;
   }
 
@@ -106,8 +105,8 @@ import { SITE } from "../config/site";
       right: 0;
       flex-direction: column;
       gap: 0;
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
+    background: var(--color-dark-bg);
+    border-bottom: 1px solid rgba(245, 241, 234, 0.12);
     }
 
     .nav.open {

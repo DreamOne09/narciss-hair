@@ -10,6 +10,11 @@ const { trust, business } = SITE;
     <h2>{trust.title}</h2>
     <p class="intro">{trust.intro}</p>
 
+    <aside class="pending reveal">
+      <p class="pending-label">{trust.pendingLabel}</p>
+      <p>{trust.pendingBody}</p>
+    </aside>
+
     <ul class="trust-list">
       {
         trust.items.map((item) => (
@@ -32,7 +37,28 @@ const { trust, business } = SITE;
 <style>
   .intro {
     color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .pending {
+    border-left: 3px solid var(--color-mist-rose);
+    padding: var(--space-2) var(--space-3);
     margin-bottom: var(--space-4);
+    background: var(--color-surface);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .pending-label {
+    font-weight: 700;
+    color: var(--color-accent);
+    margin: 0 0 0.35rem;
+    font-size: var(--text-sm);
+  }
+
+  .pending p:last-child {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
   }
 
   .trust-list {
@@ -46,17 +72,12 @@ const { trust, business } = SITE;
   @media (min-width: 768px) {
     .trust-list {
       grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-4);
     }
   }
 
   .trust-item {
     border-top: 2px solid var(--color-border);
     padding-top: var(--space-2);
-  }
-
-  .trust-item h3 {
-    font-size: var(--text-h3);
   }
 
   .trust-item p {
