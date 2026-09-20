@@ -4,106 +4,65 @@ import { SITE } from "../../config/site";
 const { services } = SITE;
 ---
 
-<section id="services" class="section">
+<section id="services" class="section section-compact">
   <div class="container">
     {services.eyebrow && <p class="section-eyebrow">{services.eyebrow}</p>}
     <h2>{services.title}</h2>
     <p class="intro">{services.intro}</p>
 
-    <div class="service-grid">
+    <ul class="service-list reveal">
       {
-        services.items.map((item, index) => (
-          <article class="service-card reveal">
-            <figure class="service-media">
-              <img src={item.image} alt={item.imageAlt} width="640" height="480" loading="lazy" />
-              <span class="wm">{SITE.vi.imageWatermark}</span>
-            </figure>
-            <div class="service-body">
-              <p class="service-num" aria-hidden="true">
-                {String(index + 1).padStart(2, "0")}
-              </p>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </div>
-          </article>
+        services.items.map((item) => (
+          <li>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </li>
         ))
       }
-    </div>
+    </ul>
   </div>
 </section>
 
 <style>
-  .intro {
-    color: var(--color-text-muted);
-    font-size: var(--text-lg);
-    margin-bottom: var(--space-4);
-  }
-
-  .service-grid {
-    display: grid;
-    gap: var(--space-4);
-  }
-
-  @media (min-width: 768px) {
-    .service-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-4) var(--space-3);
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .service-grid {
-      gap: var(--space-section) var(--space-4);
-    }
-  }
-
-  .service-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .service-media {
-    margin: 0;
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius-sm);
+  .section-compact {
+    padding-block: calc(var(--space-section) * 0.65);
     background: var(--color-surface-alt);
   }
 
-  .service-media img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-  }
-
-  .wm {
-    position: absolute;
-    left: 0.5rem;
-    bottom: 0.5rem;
-    font-size: 0.62rem;
-    letter-spacing: 0.06em;
-    color: rgba(255, 255, 255, 0.72);
-    background: rgba(28, 27, 26, 0.45);
-    padding: 0.2rem 0.45rem;
-    border-radius: var(--radius-sm);
-  }
-
-  .service-num {
-    font-family: var(--font-heading);
-    font-size: 0.8rem;
-    color: var(--color-accent);
-    letter-spacing: var(--tracking-wide);
-    margin: 0 0 0.35rem;
-  }
-
-  .service-body h3 {
-    font-size: var(--text-h3);
-  }
-
-  .service-body p {
+  .intro {
     color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-3);
+  }
+
+  .service-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  @media (min-width: 768px) {
+    .service-list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3) var(--space-4);
+    }
+  }
+
+  .service-list li {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-2);
+  }
+
+  .service-list h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .service-list p {
     margin: 0;
     font-size: var(--text-sm);
+    color: var(--color-text-muted);
   }
 </style>

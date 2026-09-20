@@ -4,6 +4,7 @@
 // This is the theme's "technical SEO" module: canonical URL, Open Graph,
 // Twitter cards. The JSON-LD LocalBusiness markup is a separate component.
 import { SITE } from "../config/site";
+import { asset } from "../lib/paths";
 
 interface Props {
   title: string;
@@ -19,7 +20,7 @@ const { title, description, image = SITE.hero.image, noindex = false } = Astro.p
 // Absolute canonical URL of the current page — essential to avoid duplicate
 // content issues (www/non-www, with/without trailing slash...)
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const absoluteImage = new URL(image, Astro.site);
+const absoluteImage = new URL(asset(image), Astro.site);
 ---
 
 <title>{title}</title>

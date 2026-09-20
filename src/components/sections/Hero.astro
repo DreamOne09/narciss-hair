@@ -1,12 +1,14 @@
 ---
 import { SITE } from "../../config/site";
+import { asset } from "../../lib/paths";
 
-const { hero, demo, ui, vi } = SITE;
+const { hero, demo, vi } = SITE;
+const heroImage = asset(hero.image);
 ---
 
 <section class="hero-immersive" aria-labelledby="hero-title">
   <img
-    src={hero.image}
+    src={heroImage}
     alt={hero.imageAlt}
     class="hero-backdrop"
     width="1920"
@@ -23,14 +25,14 @@ const { hero, demo, ui, vi } = SITE;
         <span class="demo-badge">{demo.ribbon}</span>
       </div>
       <h1 id="hero-title">{hero.title}</h1>
-      <p class="hero-subtitle">{hero.subtitle}</p>
+      <p class="hero-oneline">{hero.subtitle}</p>
 
       <div class="hero-actions">
-        <a class="button hero-btn-tel" href={hero.primaryCta.href} data-cta="tel">
+        <a class="button" href={hero.primaryCta.href} data-cta="tel">
           {hero.primaryCta.label}
         </a>
         <a
-          class="button hero-btn-line"
+          class="button button-hero-alt"
           href={hero.secondaryCta.href}
           target="_blank"
           rel="noopener noreferrer"
@@ -39,25 +41,15 @@ const { hero, demo, ui, vi } = SITE;
           {hero.secondaryCta.label}
         </a>
         <a
-          class="hero-btn-ig"
+          class="button button-hero-ghost"
           href={hero.tertiaryCta.href}
           target="_blank"
           rel="noopener noreferrer"
           data-cta="ig"
         >
-          {hero.tertiaryCta.label} →
+          {hero.tertiaryCta.label}
         </a>
       </div>
-
-      {
-        hero.highlights.length > 0 && (
-          <ul class="hero-highlights">
-            {hero.highlights.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        )
-      }
     </div>
   </div>
 
@@ -69,14 +61,15 @@ const { hero, demo, ui, vi } = SITE;
 <style>
   .hero-immersive {
     position: relative;
-    min-height: min(92vh, 900px);
+    min-height: 100dvh;
+    max-height: 920px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     color: var(--color-dark-text);
     overflow: hidden;
     isolation: isolate;
-    padding-block: calc(var(--space-section) * 0.55) 0;
+    padding-block: 0;
   }
 
   .hero-backdrop {
@@ -94,30 +87,32 @@ const { hero, demo, ui, vi } = SITE;
     inset: 0;
     z-index: -2;
     background:
-      linear-gradient(180deg, var(--color-hero-veil) 0%, rgba(28, 27, 26, 0.45) 42%, rgba(28, 27, 26, 0.62) 100%),
-      linear-gradient(100deg, rgba(28, 27, 26, 0.82) 0%, rgba(28, 27, 26, 0.35) 55%, transparent 100%);
+      linear-gradient(180deg, rgba(28, 27, 26, 0.55) 0%, rgba(28, 27, 26, 0.25) 35%, rgba(28, 27, 26, 0.75) 100%),
+      linear-gradient(100deg, rgba(28, 27, 26, 0.88) 0%, rgba(28, 27, 26, 0.4) 50%, rgba(28, 27, 26, 0.2) 100%);
   }
 
   .hero-watermark {
     position: absolute;
     right: var(--space-2);
-    bottom: 5.5rem;
+    bottom: 5rem;
     z-index: 2;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     letter-spacing: 0.08em;
-    color: rgba(245, 241, 234, 0.55);
+    color: rgba(245, 241, 234, 0.5);
     writing-mode: vertical-rl;
-    text-orientation: mixed;
   }
 
   .hero-stage {
-    padding-bottom: var(--space-section);
+    padding: calc(70px + var(--space-3)) var(--space-3) var(--space-section);
     position: relative;
     z-index: 1;
+    width: 100%;
+    max-width: var(--content-width);
+    margin-inline: auto;
   }
 
   .hero-text {
-    max-width: 36rem;
+    max-width: 34rem;
   }
 
   .hero-topline {
@@ -132,14 +127,14 @@ const { hero, demo, ui, vi } = SITE;
   .hero-eyebrow {
     margin: 0;
     font-family: var(--font-heading);
-    font-size: 0.95rem;
-    letter-spacing: 0.06em;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
     color: var(--color-mist-rose);
   }
 
   .demo-badge {
-    font-size: 0.68rem;
-    border: 1px solid rgba(245, 241, 234, 0.25);
+    font-size: 0.65rem;
+    border: 1px solid rgba(245, 241, 234, 0.28);
     padding: 0.2rem 0.55rem;
     border-radius: var(--radius-pill);
     color: var(--color-dark-text-muted);
@@ -147,86 +142,65 @@ const { hero, demo, ui, vi } = SITE;
 
   .hero-immersive h1 {
     color: var(--color-dark-text);
-    margin-bottom: var(--space-1);
-    font-size: clamp(1.75rem, 7vw, 3.2rem);
+    margin-bottom: 0.35rem;
+    font-size: clamp(1.85rem, 8vw, 3.25rem);
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
   }
 
-  .hero-subtitle {
-    font-size: var(--text-sm);
-    color: var(--color-dark-text-muted);
-    max-width: 26rem;
-    margin-bottom: var(--space-2);
-  }
-
-  @media (min-width: 768px) {
-    .hero-subtitle {
-      font-size: var(--text-lg);
-    }
+  .hero-oneline {
+    font-size: var(--text-base);
+    color: var(--color-dark-text);
+    max-width: 22rem;
+    margin-bottom: var(--space-3);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
   }
 
   .hero-actions {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    margin-top: var(--space-2);
+    gap: 0.65rem;
   }
 
   @media (min-width: 480px) {
     .hero-actions {
       flex-direction: row;
       flex-wrap: wrap;
-      align-items: center;
+      align-items: stretch;
     }
   }
 
-  .hero-btn-tel,
-  .hero-btn-line {
-    min-height: 44px;
+  .hero-actions .button {
+    min-height: 48px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     min-width: 9.5rem;
+    color: var(--color-on-accent);
   }
 
-  .hero-btn-line {
-    background: var(--color-line-brand);
-    color: #fff;
-    border: none;
+  .hero-actions .button:hover {
+    color: var(--color-on-accent);
   }
 
-  .hero-btn-line:hover {
-    color: #fff;
-    filter: brightness(0.96);
+  .button-hero-alt {
+    background: var(--color-copper);
+    box-shadow: var(--shadow-glow);
   }
 
-  .hero-btn-ig {
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    font-size: var(--text-sm);
-    font-weight: 600;
+  .button-hero-ghost {
+    background: transparent;
+    border: 2px solid rgba(196, 165, 116, 0.65);
     color: var(--color-dark-text);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-color: var(--color-mist-rose);
-  }
-
-  .hero-highlights {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: var(--space-2) 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .hero-highlights li {
+    box-shadow: none;
     font-size: var(--text-sm);
-    padding: 0.35rem 0.75rem;
-    border-radius: var(--radius-pill);
-    border: 1px solid rgba(196, 168, 160, 0.35);
-    color: var(--color-dark-text-muted);
-    background: rgba(28, 27, 26, 0.35);
+    min-width: auto;
+    padding-inline: 1.25rem;
+  }
+
+  .button-hero-ghost:hover {
+    background: rgba(168, 137, 92, 0.2);
+    color: var(--color-dark-text);
   }
 
   .hero-ridge {
@@ -244,15 +218,12 @@ const { hero, demo, ui, vi } = SITE;
 
   @media (min-width: 1440px) {
     .hero-immersive {
-      min-height: min(88vh, 960px);
+      max-height: none;
+      min-height: min(92vh, 980px);
     }
 
     .hero-stage {
-      padding-bottom: calc(var(--space-section) * 1.1);
-    }
-
-    .hero-text {
-      max-width: 42rem;
+      padding-bottom: calc(var(--space-section) * 1.15);
     }
   }
 </style>

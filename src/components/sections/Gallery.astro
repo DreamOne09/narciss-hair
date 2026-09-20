@@ -4,20 +4,22 @@
 // bottom gradient (both disabled under prefers-reduced-motion / touch).
 // Tip: 5 or 7 images fill the desktop grid perfectly.
 import { SITE } from "../../config/site";
+import { asset } from "../../lib/paths";
 
 const { gallery } = SITE;
 ---
 
-<section id="gallery" class="section">
+<section id="gallery" class="section gallery-feature">
   <div class="container">
     {gallery.eyebrow && <p class="section-eyebrow">{gallery.eyebrow}</p>}
     <h2>{gallery.title}</h2>
+    {"lead" in gallery && gallery.lead && <p class="gallery-lead">{gallery.lead}</p>}
     <div class="gallery-grid">
       {
         gallery.images.map((image) => (
           <figure class="gallery-item reveal">
             <img
-              src={image.src}
+              src={asset(image.src)}
               alt={image.alt}
               loading="lazy"
               width="400"
@@ -33,6 +35,17 @@ const { gallery } = SITE;
 </section>
 
 <style>
+  .gallery-feature {
+    padding-block: var(--space-section);
+  }
+
+  .gallery-lead {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+    max-width: 36rem;
+  }
+
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

@@ -2,10 +2,10 @@
 import Base from "../layouts/Base.astro";
 import { SITE } from "../config/site";
 import Hero from "../components/sections/Hero.astro";
-import Services from "../components/sections/Services.astro";
-import About from "../components/sections/About.astro";
 import Gallery from "../components/sections/Gallery.astro";
+import About from "../components/sections/About.astro";
 import Trust from "../components/sections/Trust.astro";
+import Services from "../components/sections/Services.astro";
 import PracticalInfo from "../components/sections/PracticalInfo.astro";
 import Faq from "../components/sections/Faq.astro";
 import CtaBanner from "../components/sections/CtaBanner.astro";
@@ -13,10 +13,10 @@ import CtaBanner from "../components/sections/CtaBanner.astro";
 
 <Base title={`${SITE.name} — ${SITE.tagline}`} description={SITE.description} withJsonLd>
   <Hero />
-  <Services />
-  <About />
   <Gallery />
+  <About />
   <Trust />
+  <Services />
   <PracticalInfo />
   <Faq />
   <CtaBanner />

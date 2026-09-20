@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import { SITE } from "../config/site";
+import { route } from "../lib/paths";
 ---
 
 <Base
@@ -11,6 +12,6 @@ import { SITE } from "../config/site";
   <div class="container page-content">
     <h1>{SITE.ui.notFoundTitle}</h1>
     <p>{SITE.ui.notFoundText}</p>
-    <p><a class="button" href="/">{SITE.ui.notFoundCta}</a></p>
+    <p><a class="button" href={route()}>{SITE.ui.notFoundCta}</a></p>
   </div>
 </Base>

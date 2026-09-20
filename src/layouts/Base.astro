@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { SITE } from "../config/site";
+import { asset } from "../lib/paths";
 import Seo from "../components/Seo.astro";
 import JsonLdLocalBusiness from "../components/JsonLdLocalBusiness.astro";
 import DemoGate from "../components/DemoGate.astro";
@@ -22,8 +23,8 @@ const { title, description, noindex = false, withJsonLd = false } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" type="image/svg+xml" href={asset("favicon.svg")} />
+    <link rel="sitemap" href={asset("sitemap-index.xml")} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

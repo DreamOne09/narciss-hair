@@ -4,44 +4,49 @@
 
 > **僅供 Demo 使用** · 公開來源整理 · **非店家委託** · **由琢奧科技製作**
 
-## 官方 alias（G5 交付）
+## GitHub Pages（Project site）
 
-`https://narciss-hair.vercel.app`
+公開網址：`https://dreamone09.github.io/narciss-hair/`
+
+建置時**必須**帶 base path，否則 `/_astro` 與 `/gallery` 會 404：
 
 ```bash
-export VERCEL_TOKEN=your_token
-./scripts/deploy-official.sh
+npm run build:pages
+# 等同 PUBLIC_BASE=/narciss-hair astro build
 ```
 
-禁止以 anonymous `temporary-*.vercel.app` 當正式交付。
+Vercel／根網域部署維持預設：
 
-## 改文案：只改一個檔
+```bash
+npm run build   # PUBLIC_BASE 未設 → base '/'
+```
+
+內部連結與 public 資源請透過 `src/lib/paths.ts`（`asset()`、`route()`、`anchor()`），勿寫死 `/` 開頭路徑。
+
+## 官方 alias（Vercel）
+
+`https://narciss-hair.vercel.app` · `./scripts/deploy-official.sh`
+
+## 改文案
 
 ```text
 src/config/site.ts
 ```
 
-（Astro-Chalet 哲學：元件不寫死文案，全部讀 `SITE`。）
-
 ## 本地
 
 ```bash
 npm install
-npm run dev      # http://localhost:43123
-npm run build    # → dist/
+npm run dev
+npm run build:pages && npx astro preview --port 43123
+# 開啟 http://127.0.0.1:43123/narciss-hair/
 npm run verify:g5
 ```
 
-## 區塊
+## 區塊順序（DESIGN-PLAN）
 
-Hero（editorial 雙 CTA）· 服務（圖文交替，非四欄卡）· 關於 · Gallery · 信任（不造假評價）· CTA · FAQ · 時段地址 · 聯絡
-
-## Demo 進站窗
-
-置中 overlay；未按「看 Demo」鎖 `html` / `body` / `#site-shell` 捲動，背後 CTA 不可點。
+Hero（immersive）→ **作品 Gallery** → 關於 → 評價與信任 → 服務（精簡）→ 到店 → FAQ → CTA
 
 ## 技術
 
-- Astro 6 + `@astrojs/sitemap`
-- HairSalon JSON-LD + FAQ JSON-LD
-- CSS scroll reveal（無 GSAP／無 WebGL）
+Astro 6 · VI tokens · CSS scroll reveal ≤1 · HairSalon JSON-LD
