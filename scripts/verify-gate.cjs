@@ -1,27 +1,41 @@
 const { chromium } = require("playwright");
 
-const URL = process.env.TEST_URL || "http://127.0.0.1:43123";
+const testUrl = process.env.TEST_URL || "http://127.0.0.1:43123";
+const STORAGE_KEY = "narciss-proposal-unlocked";
 
 async function run() {
   const browser = await chromium.launch();
   const page = await browser.newPage();
-  await page.addInitScript(() => {
-    sessionStorage.removeItem("narciss-hair-demo-dismissed");
-  });
+  await page.addInitScript((key) => {
+    sessionStorage.removeItem(key);
+  }, STORAGE_KEY);
   await page.setViewportSize({ width: 375, height: 667 });
-  await page.goto(URL, { waitUntil: "networkidle" });
+  await page.goto(testUrl, { waitUntil: "networkidle" });
 
-  await page.getByRole("button", { name: "看 Demo" }).waitFor({ state: "visible", timeout: 15000 });
-  const modal = page.locator("#demo-gate");
+  const robotsMeta = await page.evaluate(() => {
+    const robots = document.querySelector('meta[name="robots"]')?.getAttribute("content") || "";
+    const googlebot =
+      document.querySelector('meta[name="googlebot"]')?.getAttribute("content") || "";
+    return { robots, googlebot };
+  });
+
+  const pageUrl = new URL(testUrl);
+  const robotsTxtUrl = new URL(
+    "robots.txt",
+    pageUrl.href.endsWith("/") ? pageUrl.href : `${pageUrl.href}/`
+  ).href;
+  let robotsTxt = "";
+  try {
+    const res = await page.request.get(robotsTxtUrl);
+    robotsTxt = res.ok() ? await res.text() : "";
+  } catch {
+    robotsTxt = "";
+  }
+
+  await page.getByRole("heading", { name: "提案預覽須知" }).waitFor({ state: "visible", timeout: 15000 });
 
   const htmlLocked = await page.evaluate(() =>
     document.documentElement.classList.contains("demo-gate-locked")
-  );
-  const bodyLocked = await page.evaluate(() =>
-    document.body.classList.contains("demo-gate-locked")
-  );
-  const shellLocked = await page.evaluate(() =>
-    document.getElementById("site-shell")?.classList.contains("demo-gate-locked")
   );
 
   const ctas = ["tel", "line"];
@@ -37,14 +51,15 @@ async function run() {
     });
   }
 
-  const title = await page.locator("#demo-gate-title").textContent();
-  const scrollYStart = await page.evaluate(() => window.scrollY);
-  await page.mouse.wheel(0, 400);
-  await page.waitForTimeout(150);
-  const scrollYAfterWheel = await page.evaluate(() => window.scrollY);
+  await page.locator("#proposal-password").fill("wrong");
+  await page.getByRole("button", { name: "進入提案" }).click();
+  const errorVisible = await page.locator("#proposal-gate-error").isVisible();
 
-  await page.getByRole("button", { name: "看 Demo" }).click();
+  await page.locator("#proposal-password").fill("demo");
+  await page.getByRole("button", { name: "進入提案" }).click();
   await page.locator("#demo-gate").waitFor({ state: "detached", timeout: 5000 });
+
+  const legalBanner = await page.locator(".legal-chrome-banner").textContent();
 
   const aboveFold = {};
   for (const cta of ["tel", "line", "ig"]) {
@@ -55,26 +70,29 @@ async function run() {
     });
   }
 
-  const h1 = await page.locator("#hero-title").isVisible();
-  const screenshotPath = process.env.SCREENSHOT_PATH || "/opt/cursor/artifacts/hero-375.png";
-  await page.screenshot({ path: screenshotPath, fullPage: false });
+  const noindexOk =
+    robotsMeta.robots.includes("noindex") &&
+    robotsMeta.googlebot.includes("noindex") &&
+    robotsTxt.includes("Disallow: /");
 
   console.log(
     JSON.stringify({
-      url: URL,
+      url: testUrl,
+      robotsMeta,
+      robotsTxtUrl,
+      robotsDisallowAll: robotsTxt.includes("Disallow: /"),
+      noindexPresent: noindexOk,
       htmlLocked,
-      bodyLocked,
-      shellLocked,
-      scrollLocked: scrollYStart === 0 && scrollYAfterWheel === 0,
-      blockedUntilClick: blocked,
-      allBlocked: Object.values(blocked).every(Boolean),
-      titleIncludesDemo: title?.includes("僅供 Demo"),
-      aboveFoldAfterDismiss: aboveFold,
+      blockedUntilUnlock: blocked,
+      wrongPasswordShowsError: errorVisible,
+      legalBannerIncludes: legalBanner?.includes("未授權公開"),
       dualCtaAboveFold: aboveFold.tel && aboveFold.line,
-      heroTitleVisible: h1,
-      screenshotPath,
     })
   );
+
+  if (!noindexOk) {
+    throw new Error("noindex / robots.txt acceptance failed");
+  }
 
   await browser.close();
 }
