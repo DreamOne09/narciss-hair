@@ -146,13 +146,34 @@ export const SITE = {
     title: "作品與空間",
     lead: "霧感造型與沙龍氛圍——先看作品，再決定要不要預約。",
     images: [
-      { src: "/gallery/work-1.webp", alt: "髮廊環境與造型" },
-      { src: "/gallery/work-3.webp", alt: "室內空間" },
-      { src: "/gallery/work-5.webp", alt: "捲髮造型" },
-      { src: "/gallery/work-11.webp", alt: "造型分享" },
-      { src: "/gallery/work-4.webp", alt: "髮型設計" },
-      { src: "/gallery/work-2.webp", alt: "染髮成果" },
-      { src: "/gallery/work-9.webp", alt: "沙龍氛圍" },
+      {
+        src: "/gallery/work-11.webp",
+        alt: "長波浪捲髮造型作品展示",
+      },
+      {
+        src: "/gallery/work-10.webp",
+        alt: "設計師與客人的髮型完成現場",
+      },
+      {
+        src: "/gallery/work-4.webp",
+        alt: "沙龍內模特兒造型髮作品",
+      },
+      {
+        src: "/gallery/work-7.webp",
+        alt: "設計師為客人剪染造型的工作畫面",
+      },
+      {
+        src: "/gallery/work-6.webp",
+        alt: "染髮進行中的鏡台與色彩調配",
+      },
+      {
+        src: "/gallery/work-5.webp",
+        alt: "沙龍鏡台與燙染工作區",
+      },
+      {
+        src: "/gallery/work-9.webp",
+        alt: "NARCISS HAIR 店外招牌與巷弄入口",
+      },
     ],
   },
 
