@@ -112,9 +112,9 @@ a:hover {
 .section-eyebrow {
   color: var(--color-accent);
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-wide);
-  font-size: 0.8rem;
+  text-transform: none;
+  letter-spacing: 0.06em;
+  font-size: 0.85rem;
   margin: 0 0 var(--space-1);
 }
 

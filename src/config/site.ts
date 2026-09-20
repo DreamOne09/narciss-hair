@@ -66,9 +66,9 @@ export const SITE = {
     { label: "服務", href: "/#services" },
     { label: "關於", href: "/#about" },
     { label: "作品", href: "/#gallery" },
-    { label: "信任", href: "/#trust" },
+    { label: "評價與信任", href: "/#trust" },
     { label: "到店", href: "/#info" },
-    { label: "FAQ", href: "/#faq" },
+    { label: "常見問題", href: "/#faq" },
   ],
 
   hero: {
@@ -81,12 +81,12 @@ export const SITE = {
     eyebrow: "NARCISS HAIR",
     primaryCta: { label: "打電話", href: "tel:+886225636233" },
     secondaryCta: { label: "LINE 預約", href: "https://lin.ee/Bc0WDRi" },
-    tertiaryCta: { label: "Instagram", href: "https://www.instagram.com/narciss.hair/" },
+    tertiaryCta: { label: "到 Instagram 看作品", href: "https://www.instagram.com/narciss.hair/" },
     highlights: ["寵物友善", "中山站步行約 5 分鐘"] as string[],
   },
 
   services: {
-    eyebrow: "Services",
+    eyebrow: "服務",
     title: "服務項目",
     intro: "依髮質與生活節奏設計，不是制式套餐卡；以下為公開資料整理之主要項目。",
     items: [
@@ -131,7 +131,7 @@ export const SITE = {
   },
 
   about: {
-    eyebrow: "About",
+    eyebrow: "關於",
     title: "關於沙龍",
     paragraphs: [
       "NARCISS HAIR 藏在中山站後巷，工業風搭配木質與灰色牆面，店門前植栽與石雕造景，是巷弄裡可以慢下來的理髮空間。",
@@ -142,7 +142,7 @@ export const SITE = {
   },
 
   gallery: {
-    eyebrow: "Gallery",
+    eyebrow: "作品",
     title: "作品與空間",
     images: [
       { src: "/gallery/work-1.webp", alt: "髮廊環境與造型" },
@@ -156,28 +156,32 @@ export const SITE = {
   },
 
   trust: {
-    eyebrow: "Trust",
-    title: "評價與信任",
+    eyebrow: "評價與信任",
+    title: "想看真實口碑？",
     intro:
-      "信任素材僅用公開評價／媒體摘錄並標來源；本 Demo 未獲授權嵌入完整評價全文。",
-    pendingLabel: "待業主補",
-    pendingBody:
-      "正式上線前，由業主提供可引用之 Google 評價摘錄或媒體連結；在此之前不以假評價或星等充數。",
-    items: [
+      "本站是行銷 Demo，不在網頁上捏造星等或評語。請直接到 Instagram 看作品風格，或到 Google 地圖閱讀公開留言，自行確認是否合適。",
+    actions: [
       {
-        title: "公開平台可自查",
-        body: "請至 Google Maps、Instagram 查看真實留言；本頁不捏造星等。",
+        label: "到 IG 看作品",
+        href: "https://www.instagram.com/narciss.hair/",
+        variant: "primary" as const,
       },
       {
-        title: "在地與交通",
-        body: "公開資訊：中山站後巷、十餘年在地經營敘述、捷運中山站 4 號出口步行約 5 分鐘。",
-      },
-      {
-        title: "空間關鍵字",
-        body: "工業風、木質、霧感髮色——對齊 DESIGN-PLAN 情緒，非虛構文案。",
+        label: "到 Google 看公開評價",
+        href: "https://www.google.com/maps/search/?api=1&query=NARCISS+HAIR+台北市中山區中山北路二段16巷16號",
+        variant: "secondary" as const,
       },
     ],
-    linkLabel: "Google 地圖公開資訊 →",
+    items: [
+      {
+        title: "作品即名片",
+        body: "霧感、自然系造型可在 IG 動態與標記中直接感受，比網站假評價更有說服力。",
+      },
+      {
+        title: "公開資訊可核對",
+        body: "地址、時段、寵物友善等敘述皆整理自 Google Maps 等公開來源，隨時可交叉比對。",
+      },
+    ],
   },
 
   reviews: {
@@ -188,7 +192,7 @@ export const SITE = {
   },
 
   faq: {
-    eyebrow: "FAQ",
+    eyebrow: "常見問題",
     title: "常見問題",
     items: [
       {
@@ -215,7 +219,7 @@ export const SITE = {
   },
 
   contact: {
-    eyebrow: "Contact",
+    eyebrow: "聯絡",
     title: "預約與聯絡",
     intro: "無後台表單、無資料庫——請直接來電、加 LINE，或到 IG 看作品。",
     endpoint: "",
@@ -239,7 +243,7 @@ export const SITE = {
     closedLabel: "公休",
     hoursTitle: "營業時間",
     findUsTitle: "地址",
-    infoEyebrow: "Visit",
+    infoEyebrow: "到店",
     infoTitle: "營業時間與地址",
     directionsLabel: "Google 地圖導航",
     googleProfileLabel: "Google 地圖上的店家",
