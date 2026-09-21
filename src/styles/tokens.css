@@ -1,47 +1,66 @@
 :root {
-  /* CIS — 店招深墨 navy／暖木底／銅金僅 CTA（見 docs/CIS-CHECK.md） */
-  --color-ink-navy: #0f1419;
-  --color-charcoal: #15181d;
-  --color-charcoal-soft: #1e2228;
-  --color-wood: #ece7df;
-  --color-wood-deep: #ddd5c9;
-  --color-label-muted: #7a746c;
+  /* Renaissance immersion — 象牙／羊皮紙／金箔／深褐／深赭（非扁平炭黑、非平米金） */
+  --color-ink-navy: #1a1410;
+  --color-charcoal: #231c16;
+  --color-charcoal-soft: #2e241c;
+  --color-wood: #ebe4d6;
+  --color-wood-deep: #ddd2c0;
+  --color-ivory: #f6f1e6;
+  --color-parchment: #f0e9dc;
+  --color-label-muted: #7a6f62;
   --color-copper: #9a7848;
-  --color-copper-bright: #b8925a;
+  --color-copper-bright: #c4a25a;
+  --color-gold-foil: #b8944f;
+  --color-gold-line: rgba(196, 162, 90, 0.72);
+  --color-ochre-deep: #4a3224;
+  --color-umber: #2a1f14;
 
   --color-bg: var(--color-wood);
-  --color-surface: #faf8f5;
+  --color-surface: var(--color-ivory);
   --color-surface-alt: var(--color-wood-deep);
-  --color-text: var(--color-charcoal);
-  --color-text-muted: #4f4a44;
-  --color-accent: var(--color-copper);
-  --color-accent-hover: #7d6238;
-  --color-on-accent: #faf8f5;
-  --color-border: #cfc6b8;
+  --color-text: var(--color-umber);
+  --color-text-muted: #5c5248;
+  --color-accent: var(--color-gold-foil);
+  --color-accent-hover: #8f7040;
+  --color-on-accent: var(--color-ivory);
+  --color-border: #cfc0a8;
   --color-rating: var(--color-copper);
 
-  --color-dark-bg: var(--color-ink-navy);
+  --color-dark-bg: var(--color-umber);
   --color-dark-surface: var(--color-charcoal-soft);
-  --color-dark-text: #f3efe8;
-  --color-dark-text-muted: #b8b0a4;
+  --color-dark-text: var(--color-ivory);
+  --color-dark-text-muted: #c4b8a8;
   --color-accent-bright: var(--color-copper-bright);
 
-  --color-hero-veil: rgba(15, 20, 25, 0.78);
+  --color-hero-veil: rgba(26, 20, 16, 0.82);
   --color-line-brand: #06c755;
 
-  --gradient-accent: linear-gradient(135deg, #b8925a 0%, #9a7848 100%);
+  --gradient-accent: linear-gradient(
+    145deg,
+    rgba(196, 162, 90, 0.35) 0%,
+    rgba(154, 120, 72, 0.12) 48%,
+    rgba(74, 50, 36, 0.08) 100%
+  );
   --gradient-icon: linear-gradient(135deg, #8a7349 0%, #5c4a32 100%);
+  --gradient-chiaroscuro: linear-gradient(
+    102deg,
+    rgba(26, 20, 16, 0.94) 0%,
+    rgba(42, 31, 20, 0.72) 38%,
+    rgba(74, 50, 36, 0.28) 62%,
+    rgba(26, 20, 16, 0.55) 100%
+  );
 
-  --font-display: "Noto Serif TC", Georgia, "Songti TC", serif;
+  --font-display: "Cormorant Garamond", "Shippori Mincho", "Songti TC", "Noto Serif TC", serif;
   --font-heading: var(--font-display);
   --font-body: "Noto Sans TC", system-ui, -apple-system, "Segoe UI", sans-serif;
   --text-base: 1rem;
   --text-sm: 0.875rem;
   --text-lg: 1.3125rem;
-  --text-h1: clamp(2rem, 6vw, 3.75rem);
+  --text-h1: clamp(2.05rem, 6.2vw, 3.85rem);
   --text-h2: clamp(1.75rem, 3.8vw, 2.65rem);
   --text-h3: 1.25rem;
   --leading: 1.65;
+  --tracking-display: 0.12em;
   --tracking-wide: 0.1em;
 
   --space-1: 0.5rem;
@@ -49,20 +68,24 @@
   --space-3: 1.5rem;
   --space-4: 2.75rem;
   --space-section: clamp(4rem, 10vw, 7.5rem);
-  --radius: 8px;
-  --radius-sm: 6px;
+  --radius: 4px;
+  --radius-sm: 3px;
   --radius-pill: 999px;
-  --shadow: 0 2px 16px rgba(15, 20, 25, 0.06);
-  --shadow-lift: 0 20px 48px rgba(15, 20, 25, 0.14);
-  --shadow-glow: 0 10px 32px rgba(154, 120, 72, 0.35);
+  --shadow: 0 2px 20px rgba(42, 31, 20, 0.07);
+  --shadow-lift: 0 18px 44px rgba(42, 31, 20, 0.12);
+  --shadow-glow: 0 0 0 1px var(--color-gold-line), inset 0 1px 0 rgba(255, 248, 235, 0.12);
   --content-width: 1200px;
   --prose-width: 62ch;
-  --transition: 220ms ease;
+  --ease-smooth: cubic-bezier(0.33, 0.02, 0.12, 0.98);
+  --transition: 320ms var(--ease-smooth);
 
   --header-height: 70px;
   --legal-chrome-est: 2.6rem;
   --site-chrome: calc(var(--header-height) + var(--legal-chrome-est));
   --container-inline: clamp(1.05rem, 4.2vw, var(--space-3));
+
+  --unveil-duration: 1.05s;
+  --unveil-cta-delay: 0.48s;
 }
 
 @media (max-width: 480px) {

@@ -17,14 +17,16 @@ const more = gallery.more;
         {
           featured.map((image) => (
             <figure class="gallery-item">
-              <img
-                src={asset(image.src)}
-                alt={image.alt}
-                loading="lazy"
-                width="400"
-                height="300"
-                class="gallery-image"
-              />
+              <div class="gallery-frame">
+                <img
+                  src={asset(image.src)}
+                  alt={image.alt}
+                  loading="lazy"
+                  width="400"
+                  height="300"
+                  class="gallery-image"
+                />
+              </div>
               <span class="gallery-wm">{SITE.vi.imageWatermark}</span>
             </figure>
           ))
@@ -33,15 +35,17 @@ const more = gallery.more;
       <div class="gallery-more-grid">
         {
           more.map((image) => (
-            <figure class="gallery-item">
-              <img
-                src={asset(image.src)}
-                alt={image.alt}
-                loading="lazy"
-                width="400"
-                height="300"
-                class="gallery-image"
-              />
+            <figure class="gallery-item gallery-item--secondary">
+              <div class="gallery-frame">
+                <img
+                  src={asset(image.src)}
+                  alt={image.alt}
+                  loading="lazy"
+                  width="400"
+                  height="300"
+                  class="gallery-image"
+                />
+              </div>
               <span class="gallery-wm">{SITE.vi.imageWatermark}</span>
             </figure>
           ))
@@ -54,6 +58,7 @@ const more = gallery.more;
 <style>
   .gallery-feature {
     padding-block: var(--space-section);
+    background: var(--color-parchment);
   }
 
   .gallery-lead {
@@ -66,98 +71,93 @@ const more = gallery.more;
   .gallery-wall {
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
+    gap: clamp(1.1rem, 4vw, 1.75rem);
   }
 
   .gallery-featured-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.45rem;
+    grid-template-columns: 1fr;
+    gap: clamp(1rem, 3.5vw, 1.5rem);
   }
 
-  .gallery-featured-row .gallery-item {
-    min-height: clamp(160px, 38vw, 340px);
+  @media (min-width: 768px) {
+    .gallery-featured-row {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
   }
 
   .gallery-more-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.45rem;
+    grid-template-columns: 1fr;
+    gap: clamp(1rem, 3.5vw, 1.25rem);
+  }
+
+  @media (min-width: 480px) {
+    .gallery-more-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   @media (min-width: 768px) {
     .gallery-more-grid {
       grid-template-columns: repeat(4, 1fr);
+      gap: 1.15rem;
     }
-  }
-
-  .gallery-more-grid .gallery-item {
-    min-height: 160px;
   }
 
   .gallery-item {
     margin: 0;
-    border-radius: var(--radius-sm);
-    overflow: hidden;
     position: relative;
+  }
+
+  .gallery-frame {
+    padding: 0.55rem;
+    background: var(--color-ivory);
+    border: 1px solid var(--color-gold-line);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 248, 235, 0.65),
+      0 6px 22px rgba(42, 31, 20, 0.08);
+  }
+
+  .gallery-item--secondary .gallery-frame {
+    padding: 0.45rem;
+  }
+
+  .gallery-featured-row .gallery-image {
+    aspect-ratio: 4 / 3;
+    min-height: clamp(200px, 52vw, 340px);
+  }
+
+  .gallery-more-grid .gallery-image {
+    aspect-ratio: 4 / 3;
+    min-height: 180px;
   }
 
   .gallery-wm {
     position: absolute;
-    left: 0.45rem;
-    bottom: 0.45rem;
+    left: 0.85rem;
+    bottom: 0.65rem;
     z-index: 2;
-    font-size: 0.6rem;
-    letter-spacing: 0.05em;
-    color: rgba(255, 255, 255, 0.8);
-    background: rgba(28, 27, 26, 0.5);
-    padding: 0.15rem 0.4rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    color: rgba(246, 241, 230, 0.92);
+    background: rgba(42, 31, 20, 0.52);
+    padding: 0.18rem 0.45rem;
     border-radius: var(--radius-sm);
+    border: 1px solid rgba(196, 162, 90, 0.25);
   }
 
   .gallery-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 420ms ease;
-  }
-
-  .gallery-item::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 62%, rgba(29, 20, 13, 0.5) 100%);
-    opacity: 0;
-    transition: opacity var(--transition);
-  }
-
-  @media (hover: hover) {
-    .gallery-item:hover .gallery-image {
-      transform: scale(1.05);
-    }
-
-    .gallery-item:hover::after {
-      opacity: 1;
-    }
+    display: block;
   }
 
   @media (min-width: 1440px) {
-    .gallery-wall {
-      gap: 0.55rem;
-    }
-
-    .gallery-featured-row {
-      gap: 0.55rem;
-    }
-
-    .gallery-featured-row .gallery-item {
-      min-height: 360px;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .gallery-item:hover .gallery-image {
-      transform: none;
+    .gallery-featured-row .gallery-image {
+      min-height: 320px;
     }
   }
 </style>

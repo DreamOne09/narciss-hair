@@ -20,10 +20,11 @@ const heroImage = asset(hero.image);
 
   <div class="container hero-stage">
     <div class="hero-text">
-      <h1 id="hero-title">{hero.title}</h1>
-      <p class="hero-oneline">{hero.subtitle}</p>
+      {hero.eyebrow && <p class="hero-eyebrow hero-canvas-layer">{hero.eyebrow}</p>}
+      <h1 id="hero-title" class="hero-canvas-layer">{hero.title}</h1>
+      <p class="hero-oneline hero-canvas-layer">{hero.subtitle}</p>
 
-      <div class="hero-actions">
+      <div class="hero-actions hero-canvas-cta">
         <a class="button" href={hero.primaryCta.href} data-cta="tel">
           {hero.primaryCta.label}
         </a>
@@ -77,14 +78,30 @@ const heroImage = asset(hero.image);
     z-index: -3;
   }
 
+  /* 卡拉瓦喬式單側強光：髮／作品亮、周邊深褐沉 */
   .hero-immersive::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -2;
     background:
-      linear-gradient(180deg, rgba(15, 20, 25, 0.5) 0%, rgba(15, 20, 25, 0.2) 38%, rgba(15, 20, 25, 0.82) 100%),
-      linear-gradient(105deg, rgba(15, 20, 25, 0.9) 0%, rgba(15, 20, 25, 0.45) 48%, rgba(15, 20, 25, 0.15) 100%);
+      radial-gradient(
+        ellipse 85% 70% at 72% 42%,
+        rgba(246, 241, 230, 0.22) 0%,
+        rgba(74, 50, 36, 0.08) 42%,
+        transparent 68%
+      ),
+      linear-gradient(180deg, rgba(26, 20, 16, 0.72) 0%, rgba(42, 31, 20, 0.18) 40%, rgba(26, 20, 16, 0.88) 100%),
+      var(--gradient-chiaroscuro);
+  }
+
+  .hero-immersive::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(26, 20, 16, 0.55) 0%, transparent 42%);
   }
 
   .hero-watermark {
@@ -118,12 +135,23 @@ const heroImage = asset(hero.image);
     max-width: 32rem;
   }
 
+  .hero-eyebrow {
+    margin: 0 0 0.65rem;
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-copper-bright);
+  }
+
   .hero-immersive h1 {
     color: var(--color-dark-text);
-    margin-bottom: 0.25rem;
-    font-size: clamp(1.72rem, 7.2vw, 3.25rem);
-    letter-spacing: 0.02em;
-    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+    margin-bottom: 0.35rem;
+    font-size: clamp(1.85rem, 7.4vw, 3.35rem);
+    font-weight: 700;
+    letter-spacing: var(--tracking-display);
+    text-shadow: 0 2px 28px rgba(26, 20, 16, 0.55);
   }
 
   .hero-oneline {
@@ -175,7 +203,13 @@ const heroImage = asset(hero.image);
     width: 100%;
     padding-inline: 1rem;
     font-size: var(--text-sm);
-    color: var(--color-on-accent);
+    color: var(--color-ivory);
+    background: color-mix(in srgb, var(--color-umber) 72%, transparent);
+    border: 1px solid var(--color-gold-line);
+    border-radius: var(--radius-sm);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 248, 235, 0.14),
+      inset 0 -2px 8px rgba(0, 0, 0, 0.35);
   }
 
   @media (min-width: 480px) {
@@ -187,27 +221,31 @@ const heroImage = asset(hero.image);
   }
 
   .hero-actions .button:hover {
-    color: var(--color-on-accent);
+    color: var(--color-ivory);
+    border-color: var(--color-copper-bright);
+    background: color-mix(in srgb, var(--color-ochre-deep) 78%, transparent);
   }
 
   .button-hero-alt {
-    background: var(--gradient-accent);
-    box-shadow: var(--shadow-glow);
-    border: none;
+    background: color-mix(in srgb, var(--color-umber) 68%, transparent);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 248, 235, 0.12),
+      inset 0 -2px 8px rgba(0, 0, 0, 0.32);
+    border: 1px solid var(--color-gold-line);
   }
 
   .button-hero-ghost {
     background: transparent;
-    border: 2px solid rgba(184, 146, 90, 0.55);
+    border: 1px solid rgba(196, 162, 90, 0.45);
     color: var(--color-dark-text);
-    box-shadow: none;
+    box-shadow: inset 0 1px 0 rgba(255, 248, 235, 0.08);
     font-size: var(--text-sm);
     min-width: auto;
     padding-inline: 1.25rem;
   }
 
   .button-hero-ghost:hover {
-    background: rgba(168, 137, 92, 0.2);
+    background: color-mix(in srgb, var(--color-gold-foil) 14%, transparent);
     color: var(--color-dark-text);
   }
 

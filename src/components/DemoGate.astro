@@ -79,6 +79,7 @@ const { proposal, agency } = SITE;
           window.removeEventListener("touchmove", preventScroll);
           unlockScroll();
           gate.remove();
+          document.dispatchEvent(new CustomEvent("narciss:canvas-unveil"));
           return;
         }
         if (errorEl) {
