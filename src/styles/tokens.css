@@ -58,4 +58,31 @@
   --content-width: 1200px;
   --prose-width: 62ch;
   --transition: 220ms ease;
+
+  --header-height: 70px;
+  --legal-chrome-est: 2.6rem;
+  --site-chrome: calc(var(--header-height) + var(--legal-chrome-est));
+  --container-inline: clamp(1.05rem, 4.2vw, var(--space-3));
+}
+
+@media (max-width: 480px) {
+  :root {
+    --header-height: 64px;
+    --legal-chrome-est: 3.1rem;
+    --space-section: clamp(3.25rem, 9vw, 5.75rem);
+    --text-h2: clamp(1.55rem, 5.5vw, 2.35rem);
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-inline: var(--space-3);
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --space-section: clamp(5rem, 8vw, 8.25rem);
+    --content-width: 1240px;
+  }
 }
