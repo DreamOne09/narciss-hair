@@ -99,13 +99,13 @@ export const SITE = {
     layout: "immersive" as "editorial" | "split" | "immersive",
     title: "中山站高質感美髮",
     titleHighlight: "",
-    subtitle: "剪染護一次搞定 · 電話或 LINE 預約",
+    subtitle: "霧感剪染護 · 電話或 LINE 預約",
     image: "/gallery/work-9.webp",
     imageAlt: "NARCISS HAIR 沙龍空間與髮型作品氛圍",
     eyebrow: "NARCISS HAIR",
     primaryCta: { label: "打電話", href: "tel:+886225636233" },
     secondaryCta: { label: "LINE 預約", href: "https://lin.ee/Bc0WDRi" },
-    tertiaryCta: { label: "到 Instagram 看作品", href: "https://www.instagram.com/narciss.hair/" },
+    tertiaryCta: { label: "IG 看作品", href: "https://www.instagram.com/narciss.hair/" },
     highlights: ["寵物友善", "中山站步行約 5 分鐘"] as string[],
   },
 
@@ -168,15 +168,11 @@ export const SITE = {
   gallery: {
     eyebrow: "作品",
     title: "作品與空間",
-    lead: "霧感造型與沙龍氛圍——先看作品，再決定要不要預約。",
+    lead: "先看髮型線條與霧感色調，再決定要不要走進巷弄。",
     images: [
       {
         src: "/gallery/work-11.webp",
         alt: "長波浪捲髮造型作品展示",
-      },
-      {
-        src: "/gallery/work-10.webp",
-        alt: "設計師與客人的髮型完成現場",
       },
       {
         src: "/gallery/work-4.webp",
@@ -195,6 +191,10 @@ export const SITE = {
         alt: "沙龍鏡台與燙染工作區",
       },
       {
+        src: "/gallery/work-10.webp",
+        alt: "設計師與客人的髮型完成現場",
+      },
+      {
         src: "/gallery/work-9.webp",
         alt: "NARCISS HAIR 店外招牌與巷弄入口",
       },
@@ -203,29 +203,29 @@ export const SITE = {
 
   trust: {
     eyebrow: "評價與信任",
-    title: "想看真實口碑？",
+    title: "口碑，自己看最準",
     intro:
-      "本站是行銷 Demo，不在網頁上捏造星等或評語。請直接到 Instagram 看作品風格，或到 Google 地圖閱讀公開留言，自行確認是否合適。",
+      "本站是提案 Demo，不在網頁上捏造星等。到 IG 看髮型線條，到 Google 看公開留言——合不合你的日常，由你決定。",
     actions: [
       {
-        label: "到 IG 看作品",
+        label: "IG 看作品",
         href: "https://www.instagram.com/narciss.hair/",
         variant: "primary" as const,
       },
       {
-        label: "到 Google 看公開評價",
+        label: "Google 公開評價",
         href: "https://www.google.com/maps/search/?api=1&query=NARCISS+HAIR+台北市中山區中山北路二段16巷16號",
         variant: "secondary" as const,
       },
     ],
     items: [
       {
-        title: "作品即名片",
-        body: "霧感、自然系造型可在 IG 動態與標記中直接感受，比網站假評價更有說服力。",
+        title: "作品就是語言",
+        body: "霧感、自然捲、層次剪——在 IG 動態裡比任何網站文案更直覺。",
       },
       {
-        title: "公開資訊可核對",
-        body: "地址、時段、寵物友善等敘述皆整理自 Google Maps 等公開來源，隨時可交叉比對。",
+        title: "巷弄店，資訊可核",
+        body: "地址、時段、寵物友善等敘述整理自公開地圖與社群，隨時可交叉比對。",
       },
     ],
   },

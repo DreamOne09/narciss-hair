@@ -29,8 +29,8 @@ const { trust } = SITE;
       {
         trust.items.map((item) => (
           <li class="trust-item reveal">
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
+            <p class="trust-item-title">{item.title}</p>
+            <p class="trust-item-body">{item.body}</p>
           </li>
         ))
       }
@@ -47,16 +47,18 @@ const { trust } = SITE;
   }
 
   .trust-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem;
     margin-bottom: var(--space-4);
   }
 
   @media (min-width: 480px) {
     .trust-actions {
+      display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      gap: 0.65rem;
     }
   }
 
@@ -65,6 +67,16 @@ const { trust } = SITE;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    font-size: var(--text-sm);
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 480px) {
+    .trust-actions .button {
+      width: auto;
+      font-size: var(--text-base);
+    }
   }
 
   .trust-list {
@@ -83,17 +95,24 @@ const { trust } = SITE;
   }
 
   .trust-item {
-    border-top: 2px solid var(--color-border);
-    padding-top: var(--space-2);
+    margin: 0;
+    padding: var(--space-2) 0 var(--space-2) var(--space-2);
+    border-left: 3px solid var(--color-copper-bright);
   }
 
-  .trust-item h3 {
+  .trust-item-title {
+    font-family: var(--font-display);
     font-size: var(--text-h3);
+    font-weight: 600;
+    margin: 0 0 0.35rem;
+    letter-spacing: 0.02em;
   }
 
-  .trust-item p {
+  .trust-item-body {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
     margin: 0;
+    max-width: 28rem;
+    line-height: 1.7;
   }
 </style>
