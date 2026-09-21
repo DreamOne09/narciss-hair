@@ -49,6 +49,7 @@ const heroImage = asset(hero.image);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    padding-bottom: clamp(1.5rem, 6vw, 3.25rem);
     color: var(--color-dark-text);
     overflow: hidden;
     isolation: isolate;
@@ -86,12 +87,12 @@ const heroImage = asset(hero.image);
     z-index: -2;
     background:
       radial-gradient(
-        ellipse 85% 70% at 72% 42%,
-        rgba(246, 241, 230, 0.22) 0%,
-        rgba(74, 50, 36, 0.08) 42%,
+        ellipse 78% 62% at 68% 38%,
+        rgba(244, 241, 234, 0.18) 0%,
+        rgba(61, 52, 40, 0.06) 42%,
         transparent 68%
       ),
-      linear-gradient(180deg, rgba(26, 20, 16, 0.72) 0%, rgba(42, 31, 20, 0.18) 40%, rgba(26, 20, 16, 0.88) 100%),
+      linear-gradient(180deg, rgba(18, 17, 15, 0.55) 0%, rgba(31, 27, 23, 0.12) 42%, rgba(18, 17, 15, 0.82) 100%),
       var(--gradient-chiaroscuro);
   }
 
@@ -105,25 +106,19 @@ const heroImage = asset(hero.image);
   }
 
   .hero-watermark {
-    display: none;
-  }
-
-  @media (min-width: 768px) {
-    .hero-watermark {
-      display: block;
-      position: absolute;
-      right: var(--space-2);
-      bottom: 5rem;
-      z-index: 2;
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
-      color: rgba(245, 241, 234, 0.45);
-      writing-mode: vertical-rl;
-    }
+    position: absolute;
+    right: var(--container-inline);
+    bottom: clamp(4.5rem, 12vw, 6rem);
+    z-index: 2;
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    color: rgba(244, 241, 234, 0.38);
+    writing-mode: vertical-rl;
+    pointer-events: none;
   }
 
   .hero-stage {
-    padding: var(--space-1) var(--container-inline) var(--space-2);
+    padding: clamp(2rem, 8vh, 4rem) var(--container-inline) var(--space-2);
     position: relative;
     z-index: 1;
     width: 100%;
@@ -132,7 +127,7 @@ const heroImage = asset(hero.image);
   }
 
   .hero-text {
-    max-width: 32rem;
+    max-width: 28rem;
   }
 
   .hero-eyebrow {
@@ -155,13 +150,13 @@ const heroImage = asset(hero.image);
   }
 
   .hero-oneline {
-    font-size: var(--text-base);
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: var(--color-dark-text);
-    max-width: 14rem;
-    margin-bottom: var(--space-2);
-    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--color-dark-text-muted);
+    max-width: 20rem;
+    margin-bottom: clamp(1.25rem, 4vw, 2rem);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
   }
 
   .hero-actions {
