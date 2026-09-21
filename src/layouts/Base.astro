@@ -27,7 +27,7 @@ const { title, description, withJsonLd = false } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <Seo title={title} description={description} />
@@ -44,5 +44,27 @@ const { title, description, withJsonLd = false } = Astro.props;
       </main>
       <Footer />
     </div>
+    <script is:inline>
+      (function () {
+        var unveiled = false;
+        function markCanvasReady() {
+          if (unveiled) return;
+          unveiled = true;
+          document.documentElement.classList.add("canvas-ready");
+        }
+        if (!document.getElementById("demo-gate")) {
+          markCanvasReady();
+        } else {
+          document.addEventListener("narciss:canvas-unveil", markCanvasReady, { once: true });
+        }
+        window.addEventListener(
+          "scroll",
+          function () {
+            if (window.scrollY > 6) markCanvasReady();
+          },
+          { once: true, passive: true }
+        );
+      })();
+    </script>
   </body>
 </html>
