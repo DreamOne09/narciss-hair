@@ -100,8 +100,8 @@ export const SITE = {
     title: "中山站高質感美髮",
     titleHighlight: "",
     subtitle: "霧感剪染護 · 電話或 LINE 預約",
-    image: "/gallery/work-9.webp",
-    imageAlt: "NARCISS HAIR 沙龍空間與髮型作品氛圍",
+    image: "/gallery/work-11.webp",
+    imageAlt: "長波浪霧感髮型作品——客人完成後的髮型展示",
     eyebrow: "NARCISS HAIR",
     primaryCta: { label: "打電話", href: "tel:+886225636233" },
     secondaryCta: { label: "LINE 預約", href: "https://lin.ee/Bc0WDRi" },
@@ -161,8 +161,8 @@ export const SITE = {
       "NARCISS HAIR 藏在中山站後巷，工業風搭配木質與灰色牆面，店門前植栽與石雕造景，是巷弄裡可以慢下來的理髮空間。",
       "公開資訊顯示沙龍已在此地經營十餘年。若你帶著毛孩一起來，請在預約時告知——空間標示為寵物友善。",
     ],
-    image: "/gallery/work-10.webp",
-    imageAlt: "NARCISS HAIR 室內環境",
+    image: "/gallery/work-9.webp",
+    imageAlt: "NARCISS HAIR 店外招牌與巷弄入口",
   },
 
   gallery: {
@@ -187,16 +187,16 @@ export const SITE = {
         alt: "染髮進行中的鏡台與色彩調配",
       },
       {
-        src: "/gallery/work-5.webp",
-        alt: "沙龍鏡台與燙染工作區",
-      },
-      {
         src: "/gallery/work-10.webp",
         alt: "設計師與客人的髮型完成現場",
       },
       {
         src: "/gallery/work-9.webp",
         alt: "NARCISS HAIR 店外招牌與巷弄入口",
+      },
+      {
+        src: "/gallery/work-5.webp",
+        alt: "沙龍鏡台與燙染工作區",
       },
     ],
   },
