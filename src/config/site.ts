@@ -33,8 +33,8 @@ export const SITE = {
   },
 
   legalChrome: {
-    banner: "提案 Demo｜未授權公開｜非官方站",
-    toggleLabel: "完整免責說明",
+    banner: "提案 Demo｜非官方站",
+    toggleLabel: "免責",
     disclaimerTitle: "提案 Demo 免責",
     disclaimerBody:
       "本網站由琢奧科技製作，僅供內部或客戶提案預覽，並非 NARCISS HAIR 官方網站，亦未獲店家授權對外上線。站內文案、影像整理自 Google Maps、Instagram 等公開來源，僅供討論行銷方向；時段、價格、優惠以店家現場為準。未經授權請勿截圖對外宣稱為已上線官網。",
@@ -94,12 +94,12 @@ export const SITE = {
 
   hero: {
     layout: "immersive" as "editorial" | "split" | "immersive",
-    title: "中山站高質感美髮",
+    title: "一眼，是你的完成髮",
     titleHighlight: "",
-    subtitle: "霧感剪染護",
+    subtitle: "霧感線條 · 下一步用 LINE 預約",
     image: "/gallery/work-11.webp",
     imageAlt: "長波浪霧感髮型作品——客人完成後的髮型展示",
-    eyebrow: "NARCISS HAIR",
+    eyebrow: "完成髮",
     primaryCta: { label: "LINE 預約", href: "https://lin.ee/Bc0WDRi" },
     highlights: ["寵物友善", "中山站步行約 5 分鐘"] as string[],
   },
@@ -163,33 +163,39 @@ export const SITE = {
   gallery: {
     eyebrow: "作品",
     title: "髮型作品",
-    lead: "霧感剪染、長髮線條與自然捲度——主牆以完成後的髮型為主。",
+    lead: "只收完成髮——霧感染護、長髮線條與自然捲度。",
+    zoneDemoLabel: "僅供 Demo｜公開整理影像，非店家授權真照",
     featured: [
       {
         src: "/gallery/work-11.webp",
-        alt: "長波浪捲髮造型作品展示",
+        alt: "長波浪捲髮完成造型展示",
       },
       {
-        src: "/gallery/work-4.webp",
-        alt: "模特兒霧感造型髮作品",
+        src: "/gallery/demo-hair-1.webp",
+        alt: "霧感挑染長髮完成線條（AI 質感示意）",
+        aiDemo: true,
       },
       {
-        src: "/gallery/work-2.webp",
-        alt: "染髮霧感色調作品特寫",
+        src: "/gallery/demo-hair-2.webp",
+        alt: "霧感直髮光澤完成造型（AI 質感示意）",
+        aiDemo: true,
       },
     ],
     more: [
       {
-        src: "/gallery/work-10.webp",
-        alt: "客人長髮造型完成現場",
+        src: "/gallery/demo-hair-3.webp",
+        alt: "層次短髮完成造型（AI 質感示意）",
+        aiDemo: true,
       },
       {
-        src: "/gallery/work-8.webp",
-        alt: "燙髮自然捲度作品",
+        src: "/gallery/demo-hair-4.webp",
+        alt: "側向長髮波浪完成線條（AI 質感示意）",
+        aiDemo: true,
       },
       {
-        src: "/gallery/work-3.webp",
-        alt: "層次剪髮與髮色作品",
+        src: "/gallery/demo-hair-5.webp",
+        alt: "染護色調髮色特寫（AI 質感示意）",
+        aiDemo: true,
       },
     ],
   },

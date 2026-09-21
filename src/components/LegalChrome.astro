@@ -21,43 +21,35 @@ const { legalChrome } = SITE;
   .legal-chrome {
     background: var(--color-ink-navy);
     color: var(--color-dark-text-muted);
-    border-bottom: 1px solid rgba(245, 241, 234, 0.12);
-    font-size: 0.78rem;
+    border-bottom: 1px solid rgba(245, 241, 234, 0.08);
+    font-size: 0.72rem;
   }
 
   .legal-chrome-inner {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
-    gap: 0.35rem 0.75rem;
-    padding-block: 0.45rem;
-  }
-
-  @media (max-width: 480px) {
-    .legal-chrome {
-      font-size: 0.72rem;
-    }
-
-    .legal-chrome-banner {
-      flex: 1 1 100%;
-      line-height: 1.35;
-    }
-
-    .legal-chrome-details {
-      flex: 1 1 auto;
-    }
+    gap: 0.5rem 0.75rem;
+    padding-block: 0.32rem;
+    min-height: 1.65rem;
   }
 
   .legal-chrome-banner {
     margin: 0;
     font-weight: 600;
-    color: var(--color-dark-text);
-    letter-spacing: 0.04em;
+    color: var(--color-dark-text-muted);
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .legal-chrome-details {
     margin: 0;
+    flex: 0 0 auto;
   }
 
   .legal-chrome-details summary {
@@ -65,6 +57,8 @@ const { legalChrome } = SITE;
     color: var(--color-copper-bright);
     font-weight: 600;
     list-style: none;
+    white-space: nowrap;
+    opacity: 0.88;
   }
 
   .legal-chrome-details summary::-webkit-details-marker {
@@ -75,6 +69,7 @@ const { legalChrome } = SITE;
     margin-top: 0.65rem;
     max-width: 52rem;
     line-height: 1.65;
+    white-space: normal;
   }
 
   .legal-chrome-full-title {
