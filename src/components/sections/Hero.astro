@@ -2,7 +2,7 @@
 import { SITE } from "../../config/site";
 import { asset } from "../../lib/paths";
 
-const { hero, demo, vi } = SITE;
+const { hero, vi } = SITE;
 const heroImage = asset(hero.image);
 ---
 
@@ -20,13 +20,6 @@ const heroImage = asset(hero.image);
 
   <div class="container hero-stage">
     <div class="hero-text">
-      <div class="hero-topline">
-        <p class="hero-wordmark" aria-label="NARCISS HAIR">
-          <span class="wm-narciss">NARCISS</span>
-          <span class="wm-hair">HAIR</span>
-        </p>
-        <span class="demo-badge">{demo.ribbon}</span>
-      </div>
       <h1 id="hero-title">{hero.title}</h1>
       <p class="hero-oneline">{hero.subtitle}</p>
 
@@ -95,18 +88,25 @@ const heroImage = asset(hero.image);
   }
 
   .hero-watermark {
-    position: absolute;
-    right: var(--space-2);
-    bottom: 5rem;
-    z-index: 2;
-    font-size: 0.62rem;
-    letter-spacing: 0.08em;
-    color: rgba(245, 241, 234, 0.5);
-    writing-mode: vertical-rl;
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .hero-watermark {
+      display: block;
+      position: absolute;
+      right: var(--space-2);
+      bottom: 5rem;
+      z-index: 2;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: rgba(245, 241, 234, 0.45);
+      writing-mode: vertical-rl;
+    }
   }
 
   .hero-stage {
-    padding: var(--space-2) var(--container-inline) var(--space-3);
+    padding: var(--space-1) var(--container-inline) var(--space-2);
     position: relative;
     z-index: 1;
     width: 100%;
@@ -115,62 +115,23 @@ const heroImage = asset(hero.image);
   }
 
   .hero-text {
-    max-width: 34rem;
-  }
-
-  .hero-topline {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-2);
-    flex-wrap: wrap;
-    margin-bottom: var(--space-2);
-  }
-
-  .hero-wordmark {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-    line-height: 1;
-  }
-
-  .wm-narciss {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    letter-spacing: 0.28em;
-    font-weight: 600;
-    color: var(--color-dark-text);
-  }
-
-  .wm-hair {
-    font-family: var(--font-display);
-    font-size: 0.72rem;
-    letter-spacing: 0.42em;
-    font-weight: 500;
-    color: var(--color-dark-text-muted);
-  }
-
-  .demo-badge {
-    font-size: 0.65rem;
-    border: 1px solid rgba(245, 241, 234, 0.28);
-    padding: 0.2rem 0.55rem;
-    border-radius: var(--radius-pill);
-    color: var(--color-dark-text-muted);
+    max-width: 32rem;
   }
 
   .hero-immersive h1 {
     color: var(--color-dark-text);
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.25rem;
     font-size: clamp(1.72rem, 7.2vw, 3.25rem);
     letter-spacing: 0.02em;
     text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
   }
 
   .hero-oneline {
-    font-size: var(--text-sm);
-    color: var(--color-dark-text-muted);
-    max-width: 22rem;
+    font-size: var(--text-base);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--color-dark-text);
+    max-width: 14rem;
     margin-bottom: var(--space-2);
     text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
   }
@@ -189,9 +150,7 @@ const heroImage = asset(hero.image);
 
   @media (min-width: 480px) {
     .hero-oneline {
-      font-size: var(--text-base);
-      color: var(--color-dark-text);
-      margin-bottom: var(--space-3);
+      margin-bottom: var(--space-2);
     }
 
     .hero-actions {
@@ -266,17 +225,8 @@ const heroImage = asset(hero.image);
   }
 
   @media (max-width: 479px) {
-    .demo-badge {
-      display: none;
-    }
-
-    .wm-narciss {
-      font-size: 0.88rem;
-      letter-spacing: 0.24em;
-    }
-
-    .wm-hair {
-      letter-spacing: 0.36em;
+    .hero-immersive h1 {
+      font-size: clamp(1.65rem, 6.8vw, 2rem);
     }
   }
 

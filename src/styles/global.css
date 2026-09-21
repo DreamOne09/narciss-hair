@@ -105,7 +105,7 @@ a:hover {
 
 /* scroll-margin: anchored sections (#services...) don't hide under the sticky header */
 [id] {
-  scroll-margin-top: calc(var(--site-chrome) + 12px);
+  scroll-margin-top: calc(var(--site-chrome) + 16px);
 }
 
 /* Section eyebrow: small uppercase label with an accent dash, used above h2s */
@@ -266,21 +266,17 @@ textarea:hover {
     animation-range: entry 0% entry 34%;
   }
 
-  /* Subtle cascade: siblings in a grid finish their rise slightly later,
-     left to right — reads as a gentle stagger while scrolling */
+  /* Gallery: single scroll beat on the wall, no per-tile stagger */
   .grid-2 .reveal:nth-child(2),
-  .grid-3 .reveal:nth-child(2),
-  .gallery-grid .reveal:nth-child(2) {
+  .grid-3 .reveal:nth-child(2) {
     animation-range: entry 6% entry 40%;
   }
 
-  .grid-3 .reveal:nth-child(3),
-  .gallery-grid .reveal:nth-child(3) {
+  .grid-3 .reveal:nth-child(3) {
     animation-range: entry 12% entry 46%;
   }
 
-  .grid-3 .reveal:nth-child(n + 4),
-  .gallery-grid .reveal:nth-child(n + 4) {
+  .grid-3 .reveal:nth-child(n + 4) {
     animation-range: entry 18% entry 52%;
   }
 

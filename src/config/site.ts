@@ -99,7 +99,7 @@ export const SITE = {
     layout: "immersive" as "editorial" | "split" | "immersive",
     title: "中山站高質感美髮",
     titleHighlight: "",
-    subtitle: "霧感剪染護 · 電話或 LINE 預約",
+    subtitle: "霧感剪染護",
     image: "/gallery/work-11.webp",
     imageAlt: "長波浪霧感髮型作品——客人完成後的髮型展示",
     eyebrow: "NARCISS HAIR",
@@ -169,7 +169,7 @@ export const SITE = {
     eyebrow: "作品",
     title: "作品與空間",
     lead: "先看髮型線條與霧感色調，再決定要不要走進巷弄。",
-    images: [
+    featured: [
       {
         src: "/gallery/work-11.webp",
         alt: "長波浪捲髮造型作品展示",
@@ -182,13 +182,15 @@ export const SITE = {
         src: "/gallery/work-7.webp",
         alt: "設計師為客人剪染造型的工作畫面",
       },
-      {
-        src: "/gallery/work-6.webp",
-        alt: "染髮進行中的鏡台與色彩調配",
-      },
+    ],
+    more: [
       {
         src: "/gallery/work-10.webp",
         alt: "設計師與客人的髮型完成現場",
+      },
+      {
+        src: "/gallery/work-6.webp",
+        alt: "染髮進行中的鏡台與色彩調配",
       },
       {
         src: "/gallery/work-9.webp",
