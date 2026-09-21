@@ -88,11 +88,8 @@ export const SITE = {
 
   navigation: [
     { label: "作品", href: "#gallery" },
-    { label: "關於", href: "#about" },
-    { label: "評價與信任", href: "#trust" },
-    { label: "服務", href: "#services" },
     { label: "到店", href: "#info" },
-    { label: "常見問題", href: "#faq" },
+    { label: "預約", href: "https://lin.ee/Bc0WDRi" },
   ],
 
   hero: {
@@ -103,9 +100,7 @@ export const SITE = {
     image: "/gallery/work-11.webp",
     imageAlt: "長波浪霧感髮型作品——客人完成後的髮型展示",
     eyebrow: "NARCISS HAIR",
-    primaryCta: { label: "打電話", href: "tel:+886225636233" },
-    secondaryCta: { label: "LINE 預約", href: "https://lin.ee/Bc0WDRi" },
-    tertiaryCta: { label: "IG 看作品", href: "https://www.instagram.com/narciss.hair/" },
+    primaryCta: { label: "LINE 預約", href: "https://lin.ee/Bc0WDRi" },
     highlights: ["寵物友善", "中山站步行約 5 分鐘"] as string[],
   },
 
@@ -167,8 +162,8 @@ export const SITE = {
 
   gallery: {
     eyebrow: "作品",
-    title: "作品與空間",
-    lead: "先看髮型線條與霧感色調，再決定要不要走進巷弄。",
+    title: "髮型作品",
+    lead: "霧感剪染、長髮線條與自然捲度——主牆以完成後的髮型為主。",
     featured: [
       {
         src: "/gallery/work-11.webp",
@@ -176,29 +171,25 @@ export const SITE = {
       },
       {
         src: "/gallery/work-4.webp",
-        alt: "沙龍內模特兒造型髮作品",
+        alt: "模特兒霧感造型髮作品",
       },
       {
-        src: "/gallery/work-7.webp",
-        alt: "設計師為客人剪染造型的工作畫面",
+        src: "/gallery/work-2.webp",
+        alt: "染髮霧感色調作品特寫",
       },
     ],
     more: [
       {
         src: "/gallery/work-10.webp",
-        alt: "設計師與客人的髮型完成現場",
+        alt: "客人長髮造型完成現場",
       },
       {
-        src: "/gallery/work-6.webp",
-        alt: "染髮進行中的鏡台與色彩調配",
+        src: "/gallery/work-8.webp",
+        alt: "燙髮自然捲度作品",
       },
       {
-        src: "/gallery/work-9.webp",
-        alt: "NARCISS HAIR 店外招牌與巷弄入口",
-      },
-      {
-        src: "/gallery/work-5.webp",
-        alt: "沙龍鏡台與燙染工作區",
+        src: "/gallery/work-3.webp",
+        alt: "層次剪髮與髮色作品",
       },
     ],
   },

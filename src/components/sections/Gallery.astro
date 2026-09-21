@@ -58,7 +58,9 @@ const more = gallery.more;
 <style>
   .gallery-feature {
     padding-block: var(--space-section);
+    padding-top: clamp(2.25rem, 5vw, 3.5rem);
     background: var(--color-parchment);
+    margin-top: -1px;
   }
 
   .gallery-lead {
@@ -101,7 +103,7 @@ const more = gallery.more;
 
   @media (min-width: 768px) {
     .gallery-more-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.15rem;
     }
   }

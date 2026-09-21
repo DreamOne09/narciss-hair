@@ -1,6 +1,11 @@
 ---
 import { SITE } from "../config/site";
 import { route, anchor } from "../lib/paths";
+
+function navHref(href: string): string {
+  if (href.startsWith("http") || href.startsWith("tel:")) return href;
+  return anchor(href);
+}
 ---
 
 <header class="site-header">
@@ -21,7 +26,14 @@ import { route, anchor } from "../lib/paths";
     </button>
 
     <nav id="main-menu" class="nav">
-      {SITE.navigation.map((item) => <a href={anchor(item.href)}>{item.label}</a>)}
+      {SITE.navigation.map((item) => (
+        <a
+          href={navHref(item.href)}
+          {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        >
+          {item.label}
+        </a>
+      ))}
     </nav>
   </div>
 </header>

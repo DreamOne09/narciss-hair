@@ -25,34 +25,20 @@ const heroImage = asset(hero.image);
       <p class="hero-oneline hero-canvas-layer">{hero.subtitle}</p>
 
       <div class="hero-actions hero-canvas-cta">
-        <a class="button" href={hero.primaryCta.href} data-cta="tel">
-          {hero.primaryCta.label}
-        </a>
         <a
-          class="button button-hero-alt"
-          href={hero.secondaryCta.href}
+          class="button hero-primary-cta"
+          href={hero.primaryCta.href}
           target="_blank"
           rel="noopener noreferrer"
           data-cta="line"
         >
-          {hero.secondaryCta.label}
-        </a>
-        <a
-          class="button button-hero-ghost"
-          href={hero.tertiaryCta.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-cta="ig"
-        >
-          {hero.tertiaryCta.label}
+          {hero.primaryCta.label}
         </a>
       </div>
     </div>
   </div>
 
-  <svg class="hero-ridge" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 70V38L180 12l150 22 190-30 170 26 160-14 210 22 180-28 200 24V70z" />
-  </svg>
+  <div class="hero-bottom-feather" aria-hidden="true"></div>
 </section>
 
 <style>
@@ -76,6 +62,20 @@ const heroImage = asset(hero.image);
     height: 100%;
     object-fit: cover;
     z-index: -3;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 72%,
+      rgba(0, 0, 0, 0.55) 88%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 72%,
+      rgba(0, 0, 0, 0.55) 88%,
+      transparent 100%
+    );
   }
 
   /* 卡拉瓦喬式單側強光：髮／作品亮、周邊深褐沉 */
@@ -165,44 +165,20 @@ const heroImage = asset(hero.image);
   }
 
   .hero-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.55rem;
+    display: flex;
     align-items: stretch;
   }
 
-  .hero-actions .button-hero-ghost {
-    grid-column: 1 / -1;
-    min-height: 44px;
-  }
-
-  @media (min-width: 480px) {
-    .hero-oneline {
-      margin-bottom: var(--space-2);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-    }
-
-    .hero-actions .button-hero-ghost {
-      grid-column: auto;
-    }
-  }
-
-  .hero-actions .button {
+  .hero-actions .hero-primary-cta {
     min-height: 48px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    min-width: 0;
     width: 100%;
-    padding-inline: 1rem;
-    font-size: var(--text-sm);
+    max-width: 16rem;
+    padding-inline: 1.25rem;
+    font-size: var(--text-base);
     color: var(--color-ivory);
     background: color-mix(in srgb, var(--color-umber) 72%, transparent);
     border: 1px solid var(--color-gold-line);
@@ -213,53 +189,78 @@ const heroImage = asset(hero.image);
   }
 
   @media (min-width: 480px) {
-    .hero-actions .button {
-      min-width: 9.5rem;
+    .hero-actions .hero-primary-cta {
       width: auto;
-      font-size: var(--text-base);
+      min-width: 10.5rem;
     }
   }
 
-  .hero-actions .button:hover {
+  .hero-actions .hero-primary-cta:hover {
     color: var(--color-ivory);
     border-color: var(--color-copper-bright);
     background: color-mix(in srgb, var(--color-ochre-deep) 78%, transparent);
   }
 
-  .button-hero-alt {
-    background: color-mix(in srgb, var(--color-umber) 68%, transparent);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 248, 235, 0.12),
-      inset 0 -2px 8px rgba(0, 0, 0, 0.32);
-    border: 1px solid var(--color-gold-line);
+  .hero-bottom-feather {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    pointer-events: none;
+    height: clamp(3.25rem, 14vw, 4.75rem);
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      color-mix(in srgb, var(--color-parchment) 22%, transparent) 38%,
+      color-mix(in srgb, var(--color-parchment) 88%, var(--color-umber) 12%) 100%
+    );
   }
 
-  .button-hero-ghost {
-    background: transparent;
-    border: 1px solid rgba(196, 162, 90, 0.45);
-    color: var(--color-dark-text);
-    box-shadow: inset 0 1px 0 rgba(255, 248, 235, 0.08);
-    font-size: var(--text-sm);
-    min-width: auto;
-    padding-inline: 1.25rem;
+  @media (min-width: 768px) {
+    .hero-backdrop {
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 76%,
+        rgba(0, 0, 0, 0.5) 90%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 76%,
+        rgba(0, 0, 0, 0.5) 90%,
+        transparent 100%
+      );
+    }
+
+    .hero-bottom-feather {
+      height: clamp(3.5rem, 10vw, 5.25rem);
+    }
   }
 
-  .button-hero-ghost:hover {
-    background: color-mix(in srgb, var(--color-gold-foil) 14%, transparent);
-    color: var(--color-dark-text);
-  }
+  @media (min-width: 1440px) {
+    .hero-backdrop {
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 78%,
+        rgba(0, 0, 0, 0.48) 91%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 78%,
+        rgba(0, 0, 0, 0.48) 91%,
+        transparent 100%
+      );
+    }
 
-  .hero-ridge {
-    display: block;
-    width: 100%;
-    height: 70px;
-    margin-top: -1px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-ridge path {
-    fill: var(--color-bg);
+    .hero-bottom-feather {
+      height: 5.5rem;
+    }
   }
 
   @media (max-width: 479px) {
