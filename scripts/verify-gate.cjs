@@ -38,7 +38,7 @@ async function run() {
     document.documentElement.classList.contains("demo-gate-locked")
   );
 
-  const ctas = ["tel", "line"];
+  const ctas = ["tel", "ig"];
   const blocked = {};
   for (const cta of ctas) {
     const el = page.locator(`[data-cta="${cta}"]`).first();
@@ -58,11 +58,13 @@ async function run() {
   await page.locator("#proposal-password").fill("demo");
   await page.getByRole("button", { name: "進入提案" }).click();
   await page.locator("#demo-gate").waitFor({ state: "detached", timeout: 5000 });
+  /* 首屏 CTA 晚一拍 unveil；等動畫結束再量 above-fold */
+  await page.waitForTimeout(1000);
 
   const legalBanner = await page.locator(".legal-chrome-banner").textContent();
 
   const aboveFold = {};
-  for (const cta of ["tel", "line", "ig"]) {
+  for (const cta of ["tel", "ig"]) {
     const el = page.locator(`[data-cta="${cta}"]`).first();
     aboveFold[cta] = await el.evaluate((node) => {
       const rect = node.getBoundingClientRect();
@@ -86,7 +88,7 @@ async function run() {
       blockedUntilUnlock: blocked,
       wrongPasswordShowsError: errorVisible,
       legalBannerIncludes: legalBanner?.includes("未授權公開"),
-      dualCtaAboveFold: aboveFold.tel && aboveFold.line,
+      dualCtaAboveFold: aboveFold.tel && aboveFold.ig,
     })
   );
 

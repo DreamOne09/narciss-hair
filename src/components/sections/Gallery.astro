@@ -3,178 +3,128 @@ import { SITE } from "../../config/site";
 import { asset } from "../../lib/paths";
 
 const { gallery } = SITE;
-const featured = gallery.featured;
-const more = gallery.more;
+const spreads = gallery.spreads;
 const zoneLabel = "zoneDemoLabel" in gallery ? gallery.zoneDemoLabel : SITE.vi.imageWatermark;
 ---
 
-<section id="gallery" class="section gallery-feature">
-  <div class="container">
+<section id="gallery" class="section gallery-editorial">
+  <div class="container gallery-head">
     {gallery.eyebrow && <p class="section-eyebrow">{gallery.eyebrow}</p>}
     <h2>{gallery.title}</h2>
     {"lead" in gallery && gallery.lead && <p class="gallery-lead">{gallery.lead}</p>}
     <p class="gallery-zone-demo" role="note">{zoneLabel}</p>
-    <div class="gallery-wall reveal">
-      <div class="gallery-featured-row">
-        {
-          featured.map((image) => (
-            <figure class:list={["gallery-item", image.aiDemo && "gallery-item--ai"]}>
-              <div class="gallery-frame">
+  </div>
+
+  <div class="gallery-stream reveal">
+    {
+      spreads.map((block) =>
+        block.layout === "spread" ? (
+          <figure class:list={["gallery-spread", block.aiDemo && "gallery-spread--ai"]}>
+            <img
+              src={asset(block.src)}
+              alt={block.alt}
+              loading="lazy"
+              width="1200"
+              height="1500"
+              class="gallery-image"
+            />
+            {block.aiDemo && <span class="gallery-ai-tag">Demo｜AI</span>}
+          </figure>
+        ) : (
+          <div class="gallery-pair">
+            {block.items.map((image) => (
+              <figure class:list={["gallery-cell", image.aiDemo && "gallery-cell--ai"]}>
                 <img
                   src={asset(image.src)}
                   alt={image.alt}
                   loading="lazy"
-                  width="400"
-                  height="300"
+                  width="800"
+                  height="1000"
                   class="gallery-image"
                 />
-              </div>
-              {image.aiDemo && <span class="gallery-ai-tag">Demo｜AI</span>}
-            </figure>
-          ))
-        }
-      </div>
-      <div class="gallery-more-grid">
-        {
-          more.map((image) => (
-            <figure class:list={["gallery-item gallery-item--secondary", image.aiDemo && "gallery-item--ai"]}>
-              <div class="gallery-frame">
-                <img
-                  src={asset(image.src)}
-                  alt={image.alt}
-                  loading="lazy"
-                  width="400"
-                  height="300"
-                  class="gallery-image"
-                />
-              </div>
-              {image.aiDemo && <span class="gallery-ai-tag">Demo｜AI</span>}
-            </figure>
-          ))
-        }
-      </div>
-    </div>
+                {image.aiDemo && <span class="gallery-ai-tag">Demo｜AI</span>}
+              </figure>
+            ))}
+          </div>
+        )
+      )
+    }
   </div>
 </section>
 
 <style>
-  .gallery-feature {
+  .gallery-editorial {
     padding-block: var(--space-section);
-    padding-top: clamp(2.25rem, 5vw, 3.5rem);
+    padding-top: clamp(1.75rem, 4vw, 3rem);
     background: var(--color-parchment);
     margin-top: -1px;
   }
 
+  .gallery-head {
+    margin-bottom: clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .gallery-head h2 {
+    margin-bottom: 0.35rem;
+  }
+
   .gallery-lead {
-    font-size: var(--text-lg);
+    font-size: var(--text-base);
     color: var(--color-text-muted);
     margin-bottom: var(--space-1);
-    max-width: 36rem;
+    max-width: 32rem;
   }
 
   .gallery-zone-demo {
-    margin: 0 0 var(--space-3);
+    margin: 0;
     font-size: 0.72rem;
     letter-spacing: 0.06em;
     color: var(--color-label-muted);
     max-width: 40rem;
   }
 
-  .gallery-wall {
-    position: relative;
+  .gallery-stream {
     display: flex;
     flex-direction: column;
-    gap: clamp(1.1rem, 4vw, 1.75rem);
+    gap: clamp(0.65rem, 2.5vw, 1.15rem);
+    padding-inline: var(--container-inline);
+    max-width: var(--content-width);
+    margin-inline: auto;
   }
 
-  .gallery-wall::after {
-    content: "Demo";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    font-family: var(--font-display);
-    font-size: clamp(3.5rem, 14vw, 7rem);
-    font-weight: 600;
-    letter-spacing: 0.35em;
-    color: color-mix(in srgb, var(--color-gold-foil) 7%, transparent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: rotate(-12deg);
-    user-select: none;
-  }
-
-  .gallery-featured-row,
-  .gallery-more-grid {
-    position: relative;
-    z-index: 1;
-  }
-
-  .gallery-featured-row {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(1rem, 3.5vw, 1.5rem);
-  }
-
-  @media (min-width: 768px) {
-    .gallery-featured-row {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-  }
-
-  .gallery-more-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(1rem, 3.5vw, 1.25rem);
-  }
-
-  @media (min-width: 480px) {
-    .gallery-more-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 768px) {
-    .gallery-more-grid {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.15rem;
-    }
-  }
-
-  .gallery-item {
+  .gallery-spread,
+  .gallery-cell {
     margin: 0;
     position: relative;
+    overflow: hidden;
   }
 
-  .gallery-frame {
-    padding: 0.55rem;
-    background: var(--color-ivory);
-    border: 1px solid var(--color-gold-line);
-    box-shadow:
-      inset 0 0 0 1px rgba(255, 248, 235, 0.55),
-      0 6px 22px rgba(31, 27, 23, 0.06);
+  .gallery-spread .gallery-image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    min-height: clamp(260px, 72vw, 520px);
+    object-fit: cover;
+    display: block;
   }
 
-  .gallery-item--secondary .gallery-frame {
-    padding: 0.45rem;
+  .gallery-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(0.65rem, 2.5vw, 1rem);
   }
 
-  .gallery-featured-row .gallery-image {
-    aspect-ratio: 4 / 3;
-    min-height: clamp(200px, 52vw, 340px);
-  }
-
-  .gallery-more-grid .gallery-image {
-    aspect-ratio: 4 / 3;
-    min-height: 180px;
+  .gallery-cell .gallery-image {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    min-height: clamp(200px, 42vw, 380px);
+    object-fit: cover;
+    display: block;
   }
 
   .gallery-ai-tag {
     position: absolute;
-    right: 0.75rem;
-    top: 0.55rem;
+    left: 0.65rem;
+    bottom: 0.65rem;
     z-index: 2;
     font-size: 0.58rem;
     font-weight: 600;
@@ -186,16 +136,29 @@ const zoneLabel = "zoneDemoLabel" in gallery ? gallery.zoneDemoLabel : SITE.vi.i
     border: 1px solid rgba(168, 148, 112, 0.35);
   }
 
-  .gallery-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  @media (min-width: 768px) {
+    .gallery-stream {
+      gap: 1.25rem;
+      padding-inline: clamp(var(--container-inline), 4vw, 2.5rem);
+    }
+
+    .gallery-spread .gallery-image {
+      aspect-ratio: 16 / 9;
+      min-height: clamp(320px, 42vw, 560px);
+    }
+
+    .gallery-pair {
+      gap: 1.25rem;
+    }
+
+    .gallery-cell .gallery-image {
+      min-height: clamp(280px, 28vw, 420px);
+    }
   }
 
-  @media (min-width: 1440px) {
-    .gallery-featured-row .gallery-image {
-      min-height: 320px;
+  @media (min-width: 1280px) {
+    .gallery-spread .gallery-image {
+      min-height: 520px;
     }
   }
 </style>

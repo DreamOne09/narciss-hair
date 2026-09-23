@@ -94,13 +94,17 @@ export const SITE = {
 
   hero: {
     layout: "immersive" as "editorial" | "split" | "immersive",
-    title: "一眼，是你的完成髮",
+    title: "霧感完成髮",
     titleHighlight: "",
-    subtitle: "霧感線條 · 下一步用 LINE 預約",
+    subtitle: "中山站 · 電話或 IG",
     image: "/gallery/work-11.webp",
     imageAlt: "長波浪霧感髮型作品——客人完成後的髮型展示",
-    eyebrow: "完成髮",
-    primaryCta: { label: "LINE 預約", href: "https://lin.ee/Bc0WDRi" },
+    eyebrow: "NARCISS HAIR",
+    primaryCta: { label: "打電話", href: "tel:+886225636233" },
+    secondaryCta: {
+      label: "IG 看作品",
+      href: "https://www.instagram.com/narciss.hair/",
+    },
     highlights: ["寵物友善", "中山站步行約 5 分鐘"] as string[],
   },
 
@@ -163,39 +167,44 @@ export const SITE = {
   gallery: {
     eyebrow: "作品",
     title: "髮型作品",
-    lead: "只收完成髮——霧感染護、長髮線條與自然捲度。",
+    lead: "完成髮大圖——霧感、層次與自然捲度。",
     zoneDemoLabel: "僅供 Demo｜公開整理影像，非店家授權真照",
-    featured: [
+    spreads: [
       {
+        layout: "spread" as const,
         src: "/gallery/work-11.webp",
         alt: "長波浪捲髮完成造型展示",
       },
       {
-        src: "/gallery/demo-hair-1.webp",
-        alt: "霧感挑染長髮完成線條（AI 質感示意）",
-        aiDemo: true,
+        layout: "pair" as const,
+        items: [
+          {
+            src: "/gallery/work-4.webp",
+            alt: "模特兒霧感造型髮作品",
+          },
+          {
+            src: "/gallery/work-2.webp",
+            alt: "染髮霧感色調作品特寫",
+          },
+        ],
       },
       {
-        src: "/gallery/demo-hair-2.webp",
-        alt: "霧感直髮光澤完成造型（AI 質感示意）",
-        aiDemo: true,
-      },
-    ],
-    more: [
-      {
-        src: "/gallery/demo-hair-3.webp",
-        alt: "層次短髮完成造型（AI 質感示意）",
-        aiDemo: true,
+        layout: "spread" as const,
+        src: "/gallery/work-8.webp",
+        alt: "燙髮自然捲度完成作品",
       },
       {
-        src: "/gallery/demo-hair-4.webp",
-        alt: "側向長髮波浪完成線條（AI 質感示意）",
-        aiDemo: true,
-      },
-      {
-        src: "/gallery/demo-hair-5.webp",
-        alt: "染護色調髮色特寫（AI 質感示意）",
-        aiDemo: true,
+        layout: "pair" as const,
+        items: [
+          {
+            src: "/gallery/work-7.webp",
+            alt: "剪髮層次與線條作品",
+          },
+          {
+            src: "/gallery/work-6.webp",
+            alt: "護髮後光澤與髮色",
+          },
+        ],
       },
     ],
   },

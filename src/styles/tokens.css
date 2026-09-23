@@ -85,13 +85,14 @@
   --container-inline: clamp(1.05rem, 4.2vw, var(--space-3));
 
   --unveil-duration: 1.12s;
-  --unveil-cta-delay: 0.52s;
+  --unveil-cta-delay: 0.28s;
 }
 
 @media (max-width: 480px) {
   :root {
     --header-height: 64px;
-    --legal-chrome-est: 1.65rem;
+    /* 與 LegalChrome 實測高度對齊，避免首屏 CTA 被推出 375 視窗 */
+    --legal-chrome-est: 1.95rem;
     --space-section: clamp(3.25rem, 9vw, 5.75rem);
     --text-h2: clamp(1.55rem, 5.5vw, 2.35rem);
   }
