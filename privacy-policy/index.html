@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="zh-Hant-TW"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/narciss-hair/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"><title>隱私權 — NARCISS HAIR</title><meta name="description" content="Privacy policy for NARCISS HAIR."><meta name="robots" content="noindex, nofollow, noarchive"><meta name="googlebot" content="noindex, nofollow, noarchive"><link rel="canonical" href="https://narciss-hair.vercel.app/narciss-hair/privacy-policy/"><meta property="og:type" content="website"><meta property="og:site_name" content="NARCISS HAIR"><meta property="og:title" content="隱私權 — NARCISS HAIR"><meta property="og:description" content="Privacy policy for NARCISS HAIR."><meta property="og:url" content="https://narciss-hair.vercel.app/narciss-hair/privacy-policy/"><meta property="og:image" content="https://narciss-hair.vercel.app/narciss-hair/gallery/work-11.webp"><meta property="og:locale" content="zh_TW"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="隱私權 — NARCISS HAIR"><meta name="twitter:description" content="Privacy policy for NARCISS HAIR."><meta name="twitter:image" content="https://narciss-hair.vercel.app/narciss-hair/gallery/work-11.webp"><link rel="stylesheet" href="/narciss-hair/_astro/Base._JEqfro3.css"></head> <body> <div id="demo-gate" class="proposal-gate" role="dialog" aria-modal="true" aria-labelledby="demo-gate-title" aria-describedby="demo-gate-desc" data-astro-cid-hduhcvig> <div class="proposal-gate-inner" data-astro-cid-hduhcvig> <div class="proposal-gate-panel" data-astro-cid-hduhcvig> <p class="proposal-gate-kicker" data-astro-cid-hduhcvig>琢奧科技</p> <h1 id="demo-gate-title" data-astro-cid-hduhcvig>提案預覽須知</h1> <p id="demo-gate-desc" class="proposal-gate-body" data-astro-cid-hduhcvig>本站為琢奧科技行銷提案 Demo，未公開、非店家委託、未獲授權上線。使用公開資料與品牌素材僅供提案討論；正式授權前請勿對外轉傳或當成官方網站。</p> <form id="proposal-gate-form" class="proposal-gate-form" novalidate data-astro-cid-hduhcvig> <label for="proposal-password" data-astro-cid-hduhcvig>預覽密碼</label> <input type="password" id="proposal-password" name="password" autocomplete="off" spellcheck="false" required data-astro-cid-hduhcvig> <p id="proposal-gate-error" class="proposal-gate-error" hidden role="alert" data-astro-cid-hduhcvig></p> <button type="submit" class="button proposal-gate-submit" data-astro-cid-hduhcvig>進入提案</button> </form> <p class="proposal-gate-note" data-astro-cid-hduhcvig>門禁僅防誤入，非正式資安。</p> </div> <p class="proposal-gate-footer" data-astro-cid-hduhcvig>琢奧科技｜僅供提案</p> </div> </div> <script>(function(){const storageKey = "narciss-proposal-unlocked";
+const wrongMsg = "密碼錯誤，請再試一次。";
+
+  const EXPECTED = "demo";
+
+  function lockScroll() {
+    document.documentElement.classList.add("demo-gate-locked");
+    document.body.classList.add("demo-gate-locked");
+    document.getElementById("site-shell")?.classList.add("demo-gate-locked");
+  }
+
+  function unlockScroll() {
+    document.documentElement.classList.remove("demo-gate-locked");
+    document.body.classList.remove("demo-gate-locked");
+    document.getElementById("site-shell")?.classList.remove("demo-gate-locked");
+  }
+
+  function preventScroll(e) {
+    e.preventDefault();
+  }
+
+  const gate = document.getElementById("demo-gate");
+  const form = document.getElementById("proposal-gate-form");
+  const input = document.getElementById("proposal-password");
+  const errorEl = document.getElementById("proposal-gate-error");
+
+  if (gate && form && input) {
+    if (sessionStorage.getItem(storageKey) === "1") {
+      gate.remove();
+    } else {
+      lockScroll();
+      window.addEventListener("wheel", preventScroll, { passive: false });
+      window.addEventListener("touchmove", preventScroll, { passive: false });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const value = input.value;
+        if (value === EXPECTED) {
+          sessionStorage.setItem(storageKey, "1");
+          window.removeEventListener("wheel", preventScroll);
+          window.removeEventListener("touchmove", preventScroll);
+          unlockScroll();
+          gate.remove();
+          document.dispatchEvent(new CustomEvent("narciss:canvas-unveil"));
+          return;
+        }
+        if (errorEl) {
+          errorEl.textContent = wrongMsg;
+          errorEl.hidden = false;
+        }
+        input.focus();
+      });
+    }
+  }
+})();</script> <div id="site-shell"> <a href="#content" class="skip-link">跳至主要內容</a> <div class="legal-chrome" role="note" aria-label="提案 Demo 法律提示" data-astro-cid-mdghxv4j> <div class="container legal-chrome-inner" data-astro-cid-mdghxv4j> <p class="legal-chrome-banner" data-astro-cid-mdghxv4j>提案 Demo｜非官方站</p> <details class="legal-chrome-details" data-astro-cid-mdghxv4j> <summary data-astro-cid-mdghxv4j>免責</summary> <div class="legal-chrome-full" data-astro-cid-mdghxv4j> <p class="legal-chrome-full-title" data-astro-cid-mdghxv4j>提案 Demo 免責</p> <p data-astro-cid-mdghxv4j>本網站由琢奧科技製作，僅供內部或客戶提案預覽，並非 NARCISS HAIR 官方網站，亦未獲店家授權對外上線。站內文案、影像整理自 Google Maps、Instagram 等公開來源，僅供討論行銷方向；時段、價格、優惠以店家現場為準。未經授權請勿截圖對外宣稱為已上線官網。</p> </div> </details> </div> </div> <header class="site-header" data-astro-cid-3ef6ksr2> <div class="container header-inner" data-astro-cid-3ef6ksr2> <a href="/narciss-hair/" class="brand" aria-label="NARCISS HAIR 首頁" data-astro-cid-3ef6ksr2> <span class="brand-mark" data-astro-cid-3ef6ksr2>NARCISS</span><span class="brand-mark-sub" data-astro-cid-3ef6ksr2> HAIR</span> </a> <button id="menu-burger" class="burger" type="button" aria-expanded="false" aria-controls="main-menu" aria-label="開啟選單" data-astro-cid-3ef6ksr2> <span data-astro-cid-3ef6ksr2></span><span data-astro-cid-3ef6ksr2></span><span data-astro-cid-3ef6ksr2></span> </button> <nav id="main-menu" class="nav" data-astro-cid-3ef6ksr2> <a href="/narciss-hair/#gallery" class="astro-3ef6ksr2" data-astro-cid-3ef6ksr2> 作品 </a><a href="/narciss-hair/#info" class="astro-3ef6ksr2" data-astro-cid-3ef6ksr2> 到店 </a><a href="https://lin.ee/Bc0WDRi" target="_blank" rel="noopener noreferrer" class="astro-3ef6ksr2" data-astro-cid-3ef6ksr2> 預約 </a> </nav> </div> </header>  <script type="module">const t=document.getElementById("menu-burger"),n=document.getElementById("main-menu");t?.addEventListener("click",()=>{const e=n?.classList.toggle("open");t.setAttribute("aria-expanded",String(!!e))});n?.addEventListener("click",e=>{e.target.tagName==="A"&&(n.classList.remove("open"),t?.setAttribute("aria-expanded","false"))});</script> <main id="content">  <div class="container page-content"> <h1>隱私權</h1> <h2>Data we collect</h2> <p>
+This site sets no tracking cookies and uses no audience-measurement tool
+      that tracks visitors. The only personal data collected is what you send
+      us voluntarily through the contact form (name, email address, message
+      content).
+</p> <h2>How the data is used</h2> <p>
+Information sent through the contact form is used solely to answer your
+      request. It is never sold, shared with third parties, or used for
+      marketing without your consent.
+</p> <h2>Retention period</h2> <p>
+Messages are kept for the time needed to handle your request, and for a
+      maximum of 12 months for business follow-up purposes.
+</p> <h2>Your rights</h2> <p>
+Under the General Data Protection Regulation (GDPR), you have the right
+      to access, rectify and delete the data that concerns you. To exercise
+      these rights, write to
+<a href="mailto:"></a>.
+      You may also lodge a complaint with your national data protection
+      authority.
+</p> <h2>External links</h2> <p>
+Buttons linking to Google Maps and to our social profiles lead to
+      third-party sites that apply their own privacy policies. No data is sent
+      to them until you click those links.
+</p> </div>  </main> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="container footer-grid" data-astro-cid-sz7xmlte> <div data-astro-cid-sz7xmlte> <p class="footer-brand" data-astro-cid-sz7xmlte>NARCISS HAIR</p> <p class="footer-text" data-astro-cid-sz7xmlte> 台北市中山區中山北路二段16巷16號<br data-astro-cid-sz7xmlte> 捷運中山站 4 號出口，步行約 5 分鐘 </p> <p class="footer-text" data-astro-cid-sz7xmlte> <a href="tel:+886225636233" data-astro-cid-sz7xmlte>02-2563-6233</a> </p> <p class="footer-demo" data-astro-cid-sz7xmlte>提案 Demo · 未授權公開 · 非官方站 · 資料來自公開來源</p> <p class="footer-demo" data-astro-cid-sz7xmlte>由琢奧科技製作</p> </div> <nav class="footer-nav" aria-label="Footer links" data-astro-cid-sz7xmlte> <a href="/narciss-hair/legal-notice/" data-astro-cid-sz7xmlte>法律聲明</a> <a href="/narciss-hair/privacy-policy/" data-astro-cid-sz7xmlte>隱私權</a> <a href="https://www.instagram.com/narciss.hair/" target="_blank" rel="noopener noreferrer" data-astro-cid-sz7xmlte> Instagram </a><a href="https://lin.ee/Bc0WDRi" target="_blank" rel="noopener noreferrer" data-astro-cid-sz7xmlte> LINE </a> </nav> </div> <div class="container" data-astro-cid-sz7xmlte> <p class="footer-copyright" data-astro-cid-sz7xmlte>
+&copy; 2026 NARCISS HAIR — 僅供 Demo · narciss-hair.vercel.app </p> </div> </footer> </div> <script>
+      (function () {
+        var unveiled = false;
+        function markCanvasReady() {
+          if (unveiled) return;
+          unveiled = true;
+          document.documentElement.classList.add("canvas-ready");
+        }
+        if (!document.getElementById("demo-gate")) {
+          markCanvasReady();
+        } else {
+          document.addEventListener("narciss:canvas-unveil", markCanvasReady, { once: true });
+        }
+        window.addEventListener(
+          "scroll",
+          function () {
+            if (window.scrollY > 6) markCanvasReady();
+          },
+          { once: true, passive: true }
+        );
+      })();
+    </script> </body> </html>
